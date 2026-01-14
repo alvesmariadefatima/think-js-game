@@ -1,13 +1,29 @@
 # Think JS Game
 
-Webapp desenvolvido com React, TypeScript e Tailwind CSS.
+Aplicação web educacional estilo Duolingo para aprender JavaScript de forma interativa e divertida!
+
+## 🎯 Sobre o Projeto
+
+Think JS Game é uma plataforma de aprendizado gamificada que ensina JavaScript através de perguntas interativas, sistema de pontuação e progressão de níveis.
 
 ## 🚀 Tecnologias
 
-- **React 18** - Biblioteca para construção de interfaces
-- **TypeScript** - Superset JavaScript com tipagem estática
+- **React 18** - Biblioteca UI
+- **TypeScript** - Tipagem estática
 - **Tailwind CSS** - Framework CSS utilitário
-- **Vite** - Build tool e dev server ultra-rápido
+- **React Router DOM** - Navegação e rotas
+- **Vite** - Build tool moderna e rápida
+
+## 📱 Funcionalidades
+
+- ✅ Sistema de autenticação (Login/Cadastro)
+- ✅ Dashboard com estatísticas do usuário
+- ✅ Sistema de lições progressivas
+- ✅ Quiz interativo com perguntas de JavaScript
+- ✅ Sistema de pontuação (XP) e níveis
+- ✅ Sequência de dias (streak)
+- ✅ Feedback imediato com explicações
+- ✅ Tela de resultados e conquistas
 
 ## 📦 Instalação
 
@@ -30,26 +46,73 @@ npm run preview
 ```
 think-js-game/
 ├── src/
-│   ├── App.tsx          # Componente principal
-│   ├── main.tsx         # Ponto de entrada
-│   ├── index.css        # Estilos globais + Tailwind
-│   └── vite-env.d.ts    # Tipos do Vite
-├── public/              # Arquivos estáticos
-├── index.html           # HTML principal
-├── package.json         # Dependências e scripts
-├── tsconfig.json        # Configuração TypeScript
-├── vite.config.ts       # Configuração Vite
-├── tailwind.config.js   # Configuração Tailwind
-└── postcss.config.js    # Configuração PostCSS
+│   ├── components/          # Componentes reutilizáveis
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   ├── Header.tsx
+│   │   ├── Input.tsx
+│   │   └── ProgressBar.tsx
+│   ├── context/            # Gerenciamento de estado global
+│   │   ├── AuthContext.tsx
+│   │   └── GameContext.tsx
+│   ├── data/               # Dados mockados
+│   │   └── questions.ts
+│   ├── pages/              # Páginas da aplicação
+│   │   ├── Login.tsx
+│   │   ├── Cadastro.tsx
+│   │   ├── Home.tsx
+│   │   ├── Perguntas.tsx
+│   │   └── Parabens.tsx
+│   ├── types/              # Definições TypeScript
+│   │   └── index.ts
+│   ├── App.tsx             # Componente raiz com rotas
+│   ├── main.tsx            # Ponto de entrada
+│   └── index.css           # Estilos globais
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── tailwind.config.js
 ```
 
-## 🎨 Desenvolvimento
+## 🎮 Como Usar
 
-O projeto usa:
+1. **Cadastro/Login**: Crie uma conta ou faça login
+2. **Dashboard**: Visualize suas estatísticas e lições disponíveis
+3. **Escolha uma Lição**: Selecione uma lição de acordo com a dificuldade
+4. **Responda as Perguntas**: Teste seus conhecimentos em JavaScript
+5. **Veja o Resultado**: Acompanhe seu progresso e ganhe XP
 
-- **ESLint** para linting
-- **TypeScript** em modo strict
-- **Hot Module Replacement (HMR)** para desenvolvimento rápido
+## 🎨 Páginas
+
+### 1. Login (`/login`)
+
+- Tela de autenticação com email e senha
+- Link para cadastro
+
+### 2. Cadastro (`/cadastro`)
+
+- Formulário de registro
+- Validação de dados
+
+### 3. Home (`/home`)
+
+- Dashboard com estatísticas (XP, Nível, Streak)
+- Lista de lições disponíveis
+- Cards informativos
+
+### 4. Perguntas (`/perguntas`)
+
+- Quiz interativo
+- Barra de progresso
+- Código de exemplo
+- Feedback imediato
+- Explicações detalhadas
+
+### 5. Parabéns (`/parabens`)
+
+- Resumo do desempenho
+- Estatísticas da sessão
+- Opção de continuar ou refazer
 
 ## 📝 Scripts
 
