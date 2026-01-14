@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import logo from "../assets/logo.png";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { login } = useAuth();
@@ -12,8 +14,10 @@ export function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
     if (!email || !password) {
+      setError("Preencha todos os campos");
       return;
     }
 
@@ -21,6 +25,8 @@ export function Login() {
     try {
       await login(email, password);
       navigate("/home");
+    } catch (err: any) {
+      setError(err.message || "Erro ao fazer login. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -30,13 +36,11 @@ export function Login() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center">
-            <span className="text-2xl">🐝</span>
-          </div>
-          <div>
-            <h1 className="text-2xl text-gray-600 font-bold">ThinkJS</h1>
-            <p className="text-sm text-gray-600">Aprenda JavaScript!</p>
-          </div>
+          <img
+            src={logo}
+            alt="ThinkJS Logo"
+            className="w-100 h-100 items-center justify-center mx-auto"
+          />
         </div>
 
         <h2 className="text-xl font-semibold mb-6  text-gray-600">Login</h2>
@@ -67,6 +71,12 @@ export function Login() {
               placeholder="••••••••"
             />
           </div>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
         </form>
 
         <button

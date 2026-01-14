@@ -10,11 +10,57 @@ import {
 import { useAuth } from "../context/AuthContext";
 import { useGame } from "../context/GameContext";
 import { lessons } from "../data/questions";
+import logoTexto from "../assets/logo-texto.png";
 
 export function Home() {
   const { user, logout } = useAuth();
   const { startQuiz } = useGame();
   const navigate = useNavigate();
+
+  // Função para verificar se uma lição está desbloqueada
+  const isLessonUnlocked = (lessonId: string): boolean => {
+    if (lessonId === "lesson-1") return true; // Primeira lição sempre desbloqueada
+
+    const completedLessons = user?.completedLessons || [];
+
+    // Para lesson-2, precisa ter completado lesson-1 com pelo menos 2 acertos
+    if (lessonId === "lesson-2") {
+      const lesson1 = completedLessons.find((l) => l.lessonId === "lesson-1");
+      return lesson1 ? lesson1.correctAnswers >= 2 : false;
+    }
+
+    // Para lesson-3, precisa ter completado lesson-2 com pelo menos 2 acertos
+    if (lessonId === "lesson-3") {
+      const lesson2 = completedLessons.find((l) => l.lessonId === "lesson-2");
+      return lesson2 ? lesson2.correctAnswers >= 2 : false;
+    }
+
+    // Para lesson-4, precisa ter completado lesson-3 com pelo menos 2 acertos
+    if (lessonId === "lesson-4") {
+      const lesson3 = completedLessons.find((l) => l.lessonId === "lesson-3");
+      return lesson3 ? lesson3.correctAnswers >= 2 : false;
+    }
+
+    return false;
+  };
+
+  // Função para obter o status da lição
+  const getLessonStatus = (lessonId: string): string => {
+    const completedLessons = user?.completedLessons || [];
+    const lessonProgress = completedLessons.find(
+      (l) => l.lessonId === lessonId
+    );
+
+    if (!isLessonUnlocked(lessonId)) {
+      return "BLOQUEADO";
+    }
+
+    if (lessonProgress && lessonProgress.correctAnswers >= 2) {
+      return "CONCLUÍDO";
+    }
+
+    return "NÃO CONCLUÍDO";
+  };
 
   const handleStartLesson = (lessonId: string) => {
     const lesson = lessons.find((l) => l.id === lessonId);
@@ -34,28 +80,28 @@ export function Home() {
       id: "lesson-1",
       nivel: "Iniciante",
       questoes: `${lessons[0]?.questions.length || 0} questões`,
-      status: "NÃO CONCLUÍDO",
+      status: getLessonStatus("lesson-1"),
       emoji: "😊",
     },
     {
       id: "lesson-2",
       nivel: "Intermediário",
       questoes: `${lessons[1]?.questions.length || 0} questões`,
-      status: "BLOQUEADO",
+      status: getLessonStatus("lesson-2"),
       emoji: "🤔",
     },
     {
       id: "lesson-3",
       nivel: "Avançado",
       questoes: `${lessons[2]?.questions.length || 0} questões`,
-      status: "BLOQUEADO",
+      status: getLessonStatus("lesson-3"),
       emoji: "😎",
     },
     {
       id: "lesson-4",
       nivel: "Especialista",
       questoes: "50 questões",
-      status: "BLOQUEADO",
+      status: getLessonStatus("lesson-4"),
       emoji: "🤓",
     },
   ];
@@ -66,10 +112,7 @@ export function Home() {
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
-              <span className="text-xl">🐝</span>
-            </div>
-            <h1 className="text-xl font-bold text-gray-600">ThinkJS</h1>
+            <img src={logoTexto} alt="ThinkJS" className="h-50" />
           </div>
         </div>
       </div>
@@ -128,9 +171,9 @@ export function Home() {
               <Target size={20} className="text-gray-600" />
               <span className="font-medium">Praticar</span>
             </button>
-            <button className="w-full flex items-center  text-gray-600gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
+            <button className="w-full flex items-center  text-gray-600 gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <BarChart3 size={20} className="text-gray-600" />
-              <span className="font-medium text-gray-600">Estatísticas</span>
+              <span className="font-medium"> Estatísticas</span>
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Store size={20} className="text-gray-600" />

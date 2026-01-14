@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/GameContext";
+import logoParabens from "../assets/logo-parabens.png";
 
 export function Parabens() {
   const { currentSession, resetQuiz } = useGame();
@@ -38,8 +39,8 @@ export function Parabens() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-2xl">
         <div className="text-center">
-          <div className="w-32 h-32 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
-            <span className="text-6xl">🐝</span>
+          <div className="w-32 h-32 flex items-center justify-center mx-auto mb-6">
+            <img src={logoParabens} alt="Parabéns" className="w-32 h-50" />
           </div>
 
           <h2 className="text-2xl font-bold mb-4 text-gray-600">

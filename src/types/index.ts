@@ -6,6 +6,14 @@ export interface User {
   xp: number;
   streak: number;
   avatarUrl?: string;
+  completedLessons?: LessonProgress[];
+}
+
+export interface LessonProgress {
+  lessonId: string;
+  correctAnswers: number;
+  totalQuestions: number;
+  completedAt: Date;
 }
 
 export interface Question {

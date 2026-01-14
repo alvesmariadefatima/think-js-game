@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { QuizSession, Question } from "../types";
+import { useAuth } from "./AuthContext";
 
 interface GameContextType {
   currentSession: QuizSession | null;
@@ -16,6 +17,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
   const [currentSession, setCurrentSession] = useState<QuizSession | null>(
     null
   );
+  const { updateUserProgress } = useAuth();
 
   const startQuiz = (lessonId: string, questions: Question[]) => {
     const session: QuizSession = {
@@ -59,6 +61,17 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const finishQuiz = () => {
     if (!currentSession) return;
+
+    // Calcular quantas questões foram respondidas corretamente
+    const correctAnswers = currentSession.answers.filter(
+      (answer, index) =>
+        answer === currentSession.questions[index].correctAnswer
+    ).length;
+
+    const totalQuestions = currentSession.questions.length;
+
+    // Salvar progresso do usuário
+    updateUserProgress(currentSession.lessonId, correctAnswers, totalQuestions);
 
     setCurrentSession({
       ...currentSession,

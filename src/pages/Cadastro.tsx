@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { validatePasswordMatch } from "../utils/validation";
+import logo from "../assets/logo.png";
 
 export function Cadastro() {
   const [name, setName] = useState("");
@@ -22,22 +24,22 @@ export function Cadastro() {
       return;
     }
 
-    if (password !== confirmPassword) {
-      setError("As senhas não coincidem");
-      return;
-    }
-
-    if (password.length < 6) {
-      setError("A senha deve ter pelo menos 6 caracteres");
+    // Validar se senhas coincidem
+    const passwordMatchValidation = validatePasswordMatch(
+      password,
+      confirmPassword
+    );
+    if (!passwordMatchValidation.valid) {
+      setError(passwordMatchValidation.error || "As senhas não coincidem");
       return;
     }
 
     setLoading(true);
     try {
-      await register(name, email, password);
+      await register(name.trim(), email.trim(), password);
       navigate("/home");
-    } catch (err) {
-      setError("Erro ao criar conta. Tente novamente.");
+    } catch (err: any) {
+      setError(err.message || "Erro ao criar conta. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -47,13 +49,11 @@ export function Cadastro() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center">
-            <span className="text-2xl">🐝</span>
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold">ThinkJS</h1>
-            <p className="text-sm text-gray-600">Aprenda JavaScript!</p>
-          </div>
+          <img
+            src={logo}
+            alt="ThinkJS Logo"
+            className="w-100 h-100 items-center justify-center mx-auto"
+          />
         </div>
 
         <h2 className="text-xl font-semibold mb-6">Cadastro</h2>
@@ -112,7 +112,7 @@ export function Cadastro() {
           </div>
 
           {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
               {error}
             </div>
           )}
