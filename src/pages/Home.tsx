@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   BookOpen,
   Target,
@@ -165,7 +165,9 @@ export function Home() {
           <div className="space-y-2">
             <button className="w-full flex text-gray-600 items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <BookOpen size={20} className="text-gray-600" />
-              <span className="font-medium">Aprender</span>
+              <Link to="/aprender">
+                <span className="font-medium">Aprender</span>
+              </Link>
             </button>
             <button className="w-full flex items-center text-gray-600 gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Target size={20} className="text-gray-600" />
