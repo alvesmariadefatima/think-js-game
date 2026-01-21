@@ -27,7 +27,7 @@ export function Cadastro() {
     // Validar se senhas coincidem
     const passwordMatchValidation = validatePasswordMatch(
       password,
-      confirmPassword
+      confirmPassword,
     );
     if (!passwordMatchValidation.valid) {
       setError(passwordMatchValidation.error || "As senhas não coincidem");
@@ -134,7 +134,17 @@ export function Cadastro() {
         </div>
 
         <p className="text-xs text-gray-500 text-center mt-8">
-          Developers by Ewerson and Maria de Fátima
+          Developers by{" "}
+          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
+            <strong>Ewersson Assis</strong>
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
+            target="_blank"
+          >
+            <strong>Maria de Fátima</strong>
+          </a>
         </p>
       </div>
     </div>
