@@ -11,6 +11,7 @@ import { Cadastro } from "./pages/Cadastro";
 import { Home } from "./pages/Home";
 import { Perguntas } from "./pages/Perguntas";
 import { Parabens } from "./pages/Parabens";
+import { Aprender } from "./pages/Aprender";
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -40,6 +41,15 @@ function AppRoutes() {
           <PublicRoute>
             <Cadastro />
           </PublicRoute>
+        }
+      />
+
+      <Route
+        path="/aprender"
+        element={
+          <PrivateRoute>
+            <Aprender />
+          </PrivateRoute>
         }
       />
 
