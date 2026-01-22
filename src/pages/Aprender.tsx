@@ -6,6 +6,7 @@ export function Aprender() {
     {
       icon: '🌱',
       title: 'Iniciante',
+      route: "/iniciante",
       description: 'Neste módulo introdutório de JavaScript, você aprenderá os conceitos fundamentais da linguagem como se funciona na prática. Vamos aprender a armazenar e manipular dados, entender a lógica de programação e compreender como o JavaScript interpreta e exibe informações.',
       bgColor: 'bg-gray-50',
       buttonColor: 'bg-yellow-400 hover:bg-yellow-500'
@@ -13,6 +14,7 @@ export function Aprender() {
     {
       icon: '🪴',
       title: 'Intermediário',
+      route: "/intermediario",
       description: 'No módulo intermediário de JavaScript, você já aprimorou seus conhecimentos e desenvolveu a lógica! Então é momento de explorar estruturas de dados mais complexas e a concatenação de template strings, permitindo que você crie integrações e iterações.',
       bgColor: 'bg-gray-50',
       buttonColor: 'bg-yellow-400 hover:bg-yellow-500'
@@ -20,7 +22,8 @@ export function Aprender() {
     {
       icon: '🌳',
       title: 'Avançado',
-      description: 'No módulo avançado de JavaScript, você irá explorar conceitos mais sofisticados como programação orientada a objetos, freará soluções altamente dinâmicas. Sendo estruturado objetos, arrays, métodos, funções de alta ordem, e mergulhará em conceitos do dados, permitindo estruturar e processar informações de forma escalável.',
+      route: "/avancado",
+      description: "No módulo avançado de JavaScript, você irá explorar conceitos mais sofisticados como programação orientada a objetos, como estruturar objetos, arrays, métodos, funções de alta ordem, permitindo estruturar e processar informações de forma escalável.",
       bgColor: 'bg-gray-50',
       buttonColor: 'bg-yellow-400 hover:bg-yellow-500'
     }
@@ -53,7 +56,7 @@ export function Aprender() {
                 {level.icon}
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                 {level.title}
               </h2>
 
@@ -61,18 +64,29 @@ export function Aprender() {
                 {level.description}
               </p>
 
-              <button
-                className={`${level.buttonColor} text-gray-800 font-bold py-2.5 sm:py-3 px-8 sm:px-12 rounded-md transition-colors w-full text-sm sm:text-base`}
+              <Link
+                to={level.route}
+                className={`${level.buttonColor} text-gray-800 font-bold py-2.5 sm:py-3 px-8 sm:px-12 rounded-md transition-colors w-full text-sm sm:text-base text-center`}
               >
-                Iniciar
-              </button>
+                Iniciar   
+              </Link>
             </div>
           ))}
         </div>
 
-        <footer className="bg-gray-50 text-center mt-12 sm:mt-16 py-6 text-xs sm:text-sm text-gray-500 px-4">
-          Developers by Ewersson and Maria de Fátima
-        </footer>
+        <p className="text-xs text-gray-500 text-center mt-8">
+          Developers by{" "}
+          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
+            <strong>Ewersson Assis</strong>
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
+            target="_blank"
+          >
+            <strong>Maria de Fátima</strong>
+          </a>
+        </p>
       </main>
     </div>
   );
