@@ -48,7 +48,7 @@ export function Home() {
   const getLessonStatus = (lessonId: string): string => {
     const completedLessons = user?.completedLessons || [];
     const lessonProgress = completedLessons.find(
-      (l) => l.lessonId === lessonId
+      (l) => l.lessonId === lessonId,
     );
 
     if (!isLessonUnlocked(lessonId)) {

@@ -1,5 +1,5 @@
 import logoTexto from "../assets/logo-texto.png";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export function Aprender() {
   const levels = [
@@ -23,7 +23,7 @@ export function Aprender() {
       icon: '🌳',
       title: 'Avançado',
       route: "/avancado",
-      description: "No módulo avançado de JavaScript, você irá explorar conceitos mais sofisticados como programação orientada a objetos, como estruturar objetos, arrays, métodos, funções de alta ordem, permitindo estruturar e processar informações de forma escalável.",
+      description: 'No módulo avançado de JavaScript, você irá explorar conceitos mais sofisticados como programação orientada a objetos, freará soluções altamente dinâmicas. Sendo estruturado objetos, arrays, métodos, funções de alta ordem, e mergulhará em conceitos do dados, permitindo estruturar e processar informações de forma escalável.',
       bgColor: 'bg-gray-50',
       buttonColor: 'bg-yellow-400 hover:bg-yellow-500'
     }
@@ -35,7 +35,11 @@ export function Aprender() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link to="/home">
-                <img src={logoTexto} alt="ThinkJS" className="h-8 sm:h-10 md:h-12" />
+              <img
+                src={logoTexto}
+                alt="ThinkJS"
+                className="h-8 sm:h-10 md:h-12"
+              />
             </Link>
           </div>
         </div>
@@ -74,19 +78,9 @@ export function Aprender() {
           ))}
         </div>
 
-        <p className="text-xs text-gray-500 text-center mt-8">
-          Developers by{" "}
-          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-            <strong>Ewersson Assis</strong>
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-            target="_blank"
-          >
-            <strong>Maria de Fátima</strong>
-          </a>
-        </p>
+        <footer className="bg-gray-50 text-center mt-12 sm:mt-16 py-6 text-xs sm:text-sm text-gray-500 px-4">
+          Developers by Ewersson and Maria de Fátima
+        </footer>
       </main>
     </div>
   );
