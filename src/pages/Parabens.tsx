@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/GameContext";
+import { useTranslation } from "react-i18next";
+import { LanguageSelector } from "../components/LanguageSelector";
 import logoParabens from "../assets/logo-parabens.png";
 
 export function Parabens() {
   const { currentSession, resetQuiz } = useGame();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!currentSession?.completedAt) {
@@ -37,6 +40,9 @@ export function Parabens() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="absolute top-4 right-4">
+        <LanguageSelector />
+      </div>
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-2xl">
         <div className="text-center">
           <div className="w-32 h-32 flex items-center justify-center mx-auto mb-6">
@@ -44,8 +50,10 @@ export function Parabens() {
           </div>
 
           <h2 className="text-2xl font-bold mb-4 text-gray-600">
-            Parabéns! Você acertou {correctAnswers} de {totalQuestions}{" "}
-            questões!
+            {t("congratulations.title", {
+              correct: correctAnswers,
+              total: totalQuestions,
+            })}
           </h2>
 
           <div className="grid grid-cols-3 gap-6 mb-8">
@@ -54,7 +62,9 @@ export function Parabens() {
               <div className="text-2xl font-bold text-blue-600 mb-1">
                 {correctAnswers}/{totalQuestions}
               </div>
-              <div className="text-sm text-gray-600">Acertos</div>
+              <div className="text-sm text-gray-600">
+                {t("congratulations.stats.correctAnswers")}
+              </div>
             </div>
 
             <div className="bg-purple-50 rounded-xl p-6">
@@ -63,8 +73,12 @@ export function Parabens() {
                 {percentage}%
               </div>
               <div className="text-sm text-gray-600">
-                <span className="hidden sm:inline">Aproveitamento</span>
-                <span className="sm:hidden">Acerto</span>
+                <span className="hidden sm:inline">
+                  {t("congratulations.stats.performance")}
+                </span>
+                <span className="sm:hidden">
+                  {t("congratulations.stats.performanceShort")}
+                </span>
               </div>
             </div>
 
@@ -73,7 +87,9 @@ export function Parabens() {
               <div className="text-2xl font-bold text-yellow-600 mb-1">
                 +{totalXpEarned}
               </div>
-              <div className="text-sm text-gray-600">XP Ganho</div>
+              <div className="text-sm text-gray-600">
+                {t("congratulations.stats.xpEarned")}
+              </div>
             </div>
           </div>
 
@@ -82,13 +98,13 @@ export function Parabens() {
               onClick={handleRetry}
               className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-4 rounded-xl transition"
             >
-              🔄 Tentar Novamente
+              🔄 {t("congratulations.tryAgain")}
             </button>
             <button
               onClick={handleContinue}
               className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 rounded-xl transition"
             >
-              Continuar Aprendendo →
+              {t("congratulations.continue")} →
             </button>
           </div>
 

@@ -1,0 +1,129 @@
+{
+  "common": {
+    "logout": "Salir",
+    "level": "Nivel",
+    "back": "Volver",
+    "next": "Siguiente",
+    "finish": "Finalizar",
+    "loading": "Cargando..."
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "subtitle": "¡Bienvenido de nuevo!",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "button": "Iniciar sesión",
+      "noAccount": "¿No tienes cuenta?",
+      "register": "Regístrate",
+      "forgotPassword": "Olvidé mi contraseña"
+    },
+    "register": {
+      "title": "Registro",
+      "subtitle": "Crea tu cuenta",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "button": "Registrarse",
+      "hasAccount": "¿Ya tienes cuenta?",
+      "login": "Iniciar sesión"
+    }
+  },
+  "home": {
+    "welcome": "¡Hola, {{name}}!",
+    "subtitle": "Sigue los caminos del conocimiento a continuación:",
+    "startLearning": "Comenzar a aprender",
+    "yourProgress": "Tu progreso",
+    "levels": {
+      "beginner": "Principiante",
+      "intermediate": "Intermedio",
+      "advanced": "Avanzado",
+      "expert": "Experto"
+    },
+    "stats": {
+      "questions": "preguntas",
+      "completed": "completadas"
+    },
+    "status": {
+      "locked": "BLOQUEADO",
+      "completed": "COMPLETADO",
+      "notCompleted": "NO COMPLETADO"
+    },
+    "menu": {
+      "learn": "Aprender",
+      "practice": "Practicar",
+      "statistics": "Estadísticas",
+      "store": "Tienda",
+      "settings": "Configuración"
+    }
+  },
+  "learn": {
+    "title": "¿Qué quieres aprender?",
+    "subtitle": "Elige un nivel para comenzar",
+    "pageTitle": "Fundamentos de JavaScript",
+    "startButton": "Comenzar",
+    "footer": "Desarrolladores: Ewersson y Maria de Fátima",
+    "beginner": {
+      "title": "Principiante",
+      "description": "En este módulo introductorio de JavaScript, aprenderás los conceptos fundamentales del lenguaje y cómo funciona en la práctica. Aprenderemos a almacenar y manipular datos, entender la lógica de programación y comprender cómo JavaScript interpreta y muestra información."
+    },
+    "intermediate": {
+      "title": "Intermedio",
+      "description": "En el módulo intermedio de JavaScript, ¡ya has mejorado tus conocimientos y desarrollado lógica! Entonces es momento de explorar estructuras de datos más complejas y la concatenación de template strings, permitiéndote crear integraciones e iteraciones."
+    },
+    "advanced": {
+      "title": "Avanzado",
+      "description": "En el módulo avanzado de JavaScript, explorarás conceptos más sofisticados como programación orientada a objetos, creando soluciones altamente dinámicas. Estructurando objetos, arrays, métodos, funciones de orden superior, y sumergiéndote en conceptos de datos, permitiendo estructurar y procesar información de manera escalable."
+    }
+  },
+  "questions": {
+    "question": "Pregunta {{current}}",
+    "totalQuestions": "{{total}} preguntas",
+    "submit": "Confirmar Respuesta",
+    "skip": "Saltar",
+    "next": "Siguiente Pregunta",
+    "viewResults": "Ver Resultados",
+    "explanation": "Explicación:",
+    "congratsXp": "¡Felicitaciones! Ganaste {{xp}} XP",
+    "correct": "¡Correcto!",
+    "incorrect": "¡Incorrecto!"
+  },
+  "congratulations": {
+    "title": "¡Felicitaciones! ¡Acertaste {{correct}} de {{total}} preguntas!",
+    "subtitle": "¡Completaste el nivel {{level}}!",
+    "stats": {
+      "correctAnswers": "Aciertos",
+      "performance": "Rendimiento",
+      "performanceShort": "Puntuación",
+      "xpEarned": "XP Ganado"
+    },
+    "tryAgain": "Intentar de Nuevo",
+    "continue": "Continuar",
+    "backToHome": "Volver al inicio"
+  },
+  "lessons": {
+    "beginner": {
+      "title": "Nivel Principiante"
+    },
+    "intermediate": {
+      "title": "Nivel Intermedio"
+    },
+    "advanced": {
+      "title": "Nivel Avanzado"
+    }
+  },
+  "levels": {
+    "beginner": {
+      "title": "Nivel Principiante"
+    },
+    "intermediate": {
+      "title": "Nivel Intermedio"
+    },
+    "advanced": {
+      "title": "Nivel Avanzado"
+    },
+    "complementaryMaterial": "Material Complementario",
+    "advance": "Avanzar",
+    "finish": "Finalizar"
+  }
+}

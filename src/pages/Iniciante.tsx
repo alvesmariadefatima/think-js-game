@@ -1,6 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useMemo } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { BookOpen, ChevronRight, ArrowLeft, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { LanguageSelector } from "../components/LanguageSelector";
+import { getBeginnerTopics } from "../data/beginnertopics";
 import logoTexto from "../assets/logo-texto.png";
 
 interface Topic {
@@ -11,6 +14,75 @@ interface Topic {
   example: string;
   readings: { title: string; source: string }[];
 }
+
+const getTopics = (lang: string): Topic[] => {
+  const topicsData: { [key: string]: Topic[] } = {
+    "pt-BR": [
+      {
+        id: 1,
+        title: "O que é JavaScript?",
+        explanation:
+          "JavaScript é uma linguagem de programação usada para dar vida às páginas da internet. Sempre que você clica em um botão, preenche um formulário ou vê algo mudar na tela sem recarregar, o JavaScript está agindo por trás.",
+        description: "Introdução ao JavaScript e onde ele é usado.",
+        example: "console.log('Olá, JavaScript!');",
+        readings: [
+          {
+            title: "MDN – O que é JavaScript",
+            source: "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript",
+          },
+        ],
+      },
+      {
+        id: 2,
+        title: "Variáveis",
+        explanation:
+          "Variáveis são como caixas onde guardamos informações para usar depois, como nomes ou números.",
+        description: "Aprendendo a guardar valores.",
+        example: "let nome = 'Maria';\nconst idade = 18;",
+        readings: [
+          {
+            title: "MDN – Variáveis",
+            source:
+              "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Grammar_and_types",
+          },
+        ],
+      },
+    ],
+    "en-US": [
+      {
+        id: 1,
+        title: "What is JavaScript?",
+        explanation:
+          "JavaScript is a programming language used to bring web pages to life. Whenever you click a button, fill out a form, or see something change on the screen without reloading, JavaScript is working behind the scenes.",
+        description: "Introduction to JavaScript and where it is used.",
+        example: "console.log('Hello, JavaScript!');",
+        readings: [
+          {
+            title: "MDN – What is JavaScript",
+            source: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+          },
+        ],
+      },
+      {
+        id: 2,
+        title: "Variables",
+        explanation:
+          "Variables are like boxes where we store information to use later, such as names or numbers.",
+        description: "Learning to store values.",
+        example: "let name = 'Maria';\nconst age = 18;",
+        readings: [
+          {
+            title: "MDN – Variables",
+            source:
+              "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types",
+          },
+        ],
+      },
+    ],
+  };
+
+  return topicsData[lang] || topicsData["pt-BR"];
+};
 
 const topics: Topic[] = [
   {
@@ -97,15 +169,15 @@ const topics: Topic[] = [
     readings: [
       {
         title: "MDN – Funções",
-        source: "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions",
+        source:
+          "https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions",
       },
     ],
   },
   {
     id: 7,
     title: "Arrays",
-    explanation:
-      "Arrays são listas usadas para guardar vários valores juntos.",
+    explanation: "Arrays são listas usadas para guardar vários valores juntos.",
     description: "Trabalhando com listas.",
     example: "let frutas = ['maçã', 'banana'];",
     readings: [
@@ -164,33 +236,42 @@ const topics: Topic[] = [
 
 export default function Iniciante() {
   const [current, setCurrent] = useState(0);
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const topics = useMemo(
+    () => getBeginnerTopics(i18n.language),
+    [i18n.language],
+  );
   const topic = topics[current];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-    <nav className="w-full bg-white border-b border-gray-200">
-    <div className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <img src={logoTexto} alt="ThinkJS" className="h-50" />
-                </div>
+      <nav className="w-full bg-white border-b border-gray-200">
+        <div className="bg-white border-b border-gray-200 px-6 py-4">
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <img src={logoTexto} alt="ThinkJS" className="h-50" />
             </div>
+            <LanguageSelector />
+          </div>
         </div>
-    </nav>
+      </nav>
 
       <div className="w-full max-w-4xl mx-auto p-6 space-y-6">
         {/* Topo */}
         <div className="flex items-center justify-between">
           <button
-            onClick={() => setCurrent((c) => Math.max(c - 1, 0))}
+            onClick={() =>
+              current === 0 ? navigate("/aprender") : setCurrent((c) => c - 1)
+            }
             className="p-2 rounded-full text-gray-700"
           >
             <ArrowLeft />
           </button>
           <button className="p-2 rounded-full text-gray-700">
             <Link to="/home">
-                <X />
+              <X />
             </Link>
           </button>
         </div>
@@ -204,7 +285,9 @@ export default function Iniciante() {
         </div>
 
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl text-gray-700 font-bold">🌱 Nível Iniciante</h1>
+          <h1 className="text-2xl text-gray-700 font-bold">
+            🌱 {t("levels.beginner.title")}
+          </h1>
           <span className="text-sm text-gray-500">
             {current + 1} / {topics.length}
           </span>
@@ -221,7 +304,7 @@ export default function Iniciante() {
 
         <div className="bg-yellow-50 rounded-2xl p-6 space-y-3">
           <div className="text-gray-700 flex items-center gap-2 font-semibold">
-            <BookOpen size={18} /> Material Complementar
+            <BookOpen size={18} /> {t("levels.complementaryMaterial")}
           </div>
           {topic.readings.map((r, i) => (
             <a
@@ -248,24 +331,26 @@ export default function Iniciante() {
             }}
             className="px-6 py-3 rounded-xl font-semibold transition bg-yellow-400 text-black hover:bg-yellow-500"
           >
-            {current === topics.length - 1 ? "Finalizar" : "Avançar"}
+            {current === topics.length - 1
+              ? t("levels.finish")
+              : t("levels.advance")}
           </button>
         </div>
       </div>
-      
+
       <p className="text-xs text-gray-500 text-center mt-8">
-          Developers by{" "}
-          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-            <strong>Ewersson Assis</strong>
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-            target="_blank"
-          >
-            <strong>Maria de Fátima</strong>
-          </a>
-        </p>
+        Developers by{" "}
+        <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
+          <strong>Ewersson Assis</strong>
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://www.linkedin.com/in/maria-de-fatima-alves/"
+          target="_blank"
+        >
+          <strong>Maria de Fátima</strong>
+        </a>
+      </p>
     </div>
   );
 }
