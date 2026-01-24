@@ -82,8 +82,20 @@ export function Aprender() {
           ))}
         </div>
 
-        <footer className="bg-gray-50 text-center mt-12 sm:mt-16 py-6 text-xs sm:text-sm text-gray-500 px-4">
-          Developers by Ewersson and Maria de Fátima
+       <footer className="bg-gray-50 text-center mt-12 sm:mt-16 py-6 text-xs sm:text-sm text-gray-500 px-4">
+          <p className="text-xs text-gray-500 text-center mt-8">
+            Developers by{" "}
+            <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
+              <strong>Ewersson Assis</strong>
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://www.linkedin.com/in/maria-de-fatima-alves/"
+              target="_blank"
+            >
+              <strong>Maria de Fátima</strong>
+            </a>
+          </p>
         </footer>
       </main>
     </div>
