@@ -1,34 +1,37 @@
 import logoTexto from "../assets/logo-texto.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { LanguageSelector } from "../components/LanguageSelector";
 
 export function Aprender() {
+  const { t } = useTranslation();
+
   const levels = [
     {
       icon: "🌱",
-      title: "Iniciante",
-      description:
-        "Neste módulo introdutório de JavaScript, você aprenderá os conceitos fundamentais da linguagem como se funciona na prática. Vamos aprender a armazenar e manipular dados, entender a lógica de programação e compreender como o JavaScript interpreta e exibe informações.",
+      title: t("learn.beginner.title"),
+      route: "/iniciante",
+      description: t("learn.beginner.description"),
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
     {
       icon: "🪴",
-      title: "Intermediário",
-      description:
-        "No módulo intermediário de JavaScript, você já aprimorou seus conhecimentos e desenvolveu a lógica! Então é momento de explorar estruturas de dados mais complexas e a concatenação de template strings, permitindo que você crie integrações e iterações.",
+      title: t("learn.intermediate.title"),
+      route: "/intermediario",
+      description: t("learn.intermediate.description"),
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
     {
       icon: "🌳",
-      title: "Avançado",
-      description:
-        "No módulo avançado de JavaScript, você irá explorar conceitos mais sofisticados como programação orientada a objetos, freará soluções altamente dinâmicas. Sendo estruturado objetos, arrays, métodos, funções de alta ordem, e mergulhará em conceitos do dados, permitindo estruturar e processar informações de forma escalável.",
+      title: t("learn.advanced.title"),
+      route: "/avancado",
+      description: t("learn.advanced.description"),
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
   ];
-
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
@@ -42,12 +45,13 @@ export function Aprender() {
               />
             </Link>
           </div>
+          <LanguageSelector />
         </div>
       </div>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-8 sm:mb-12 mt-6 sm:mt-8">
-          Fundamentos de Javascript
+          {t("learn.pageTitle")}
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -60,7 +64,7 @@ export function Aprender() {
                 {level.icon}
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                 {level.title}
               </h2>
 
@@ -68,29 +72,18 @@ export function Aprender() {
                 {level.description}
               </p>
 
-              <button
-                className={`${level.buttonColor} text-gray-800 font-bold py-2.5 sm:py-3 px-8 sm:px-12 rounded-md transition-colors w-full text-sm sm:text-base`}
+              <Link
+                to={level.route}
+                className={`${level.buttonColor} text-gray-800 font-bold py-2.5 sm:py-3 px-8 sm:px-12 rounded-md transition-colors w-full text-sm sm:text-base text-center`}
               >
-                Iniciar
-              </button>
+                {t("learn.startButton")}
+              </Link>
             </div>
           ))}
         </div>
 
         <footer className="bg-gray-50 text-center mt-12 sm:mt-16 py-6 text-xs sm:text-sm text-gray-500 px-4">
-          <p className="text-xs text-gray-500 text-center mt-8">
-            Developers by{" "}
-            <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-              <strong>Ewersson Assis</strong>
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-              target="_blank"
-            >
-              <strong>Maria de Fátima</strong>
-            </a>
-          </p>
+          Developers by Ewersson and Maria de Fátima
         </footer>
       </main>
     </div>
