@@ -11,18 +11,10 @@ import { Cadastro } from "./pages/Cadastro";
 import { Home } from "./pages/Home";
 import { Perguntas } from "./pages/Perguntas";
 import { Parabens } from "./pages/Parabens";
-<<<<<<< HEAD
-import Aprender from "./pages/Aprender";
-import Iniciante from "./pages/Iniciante";
-import Intermediario from "./pages/Intermediario";
-import Avancado from "./pages/Avancado";
-=======
 import { Aprender } from "./pages/Aprender";
 import Iniciante from "./pages/Iniciante";
 import Intermediario from "./pages/Intermediario";
 import Avancado from "./pages/Avancado";
-
->>>>>>> feat-ewersson-dev
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -82,11 +74,7 @@ function AppRoutes() {
         }
       />
 
-<<<<<<< HEAD
-      <Route 
-=======
       <Route
->>>>>>> feat-ewersson-dev
         path="/avancado"
         element={
           <PrivateRoute>
