@@ -1,102 +1,60 @@
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
-import { Language, Translations, translations } from "../data/translations";
+import React, { createContext, useCallback, useEffect, useState } from 'react';
+import { translations, Language } from '../data/translations';
 
-interface TranslationContextType {
+type TranslationContextType = {
   currentLanguage: Language;
-  t: Translations;
+  t: (typeof translations)['pt-BR'];
   changeLanguage: (language: Language) => void;
-  availableLanguages: Array<{ code: Language; name: string; flag: string }>;
-}
+  availableLanguages: { code: Language; name: string; flag: string }[];
+};
 
 export const TranslationContext =
   createContext<TranslationContextType | undefined>(undefined);
 
-interface TranslationProviderProps {
-  children: React.ReactNode;
-}
+const STORAGE_KEY = 'think-js-language';
 
-const STORAGE_KEY = "think-js-language";
+const AVAILABLE_LANGUAGES = [
+  { code: 'pt-BR', name: 'Português', flag: '🇧🇷' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'es', name: 'Español', flag: '🇪🇸' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+] as const;
 
-const AVAILABLE_LANGUAGES: TranslationContextType["availableLanguages"] = [
-  { code: "pt-BR", name: "Português (Brasil)", flag: "🇧🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
-  { code: "en", name: "English", flag: "🇺🇸" },
-];
-
-export const TranslationProvider: React.FC<TranslationProviderProps> = ({
+export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-
-    if (stored && isValidLanguage(stored)) {
-      return stored;
-    }
-
-    return detectBrowserLanguage(navigator.language);
-  });
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('pt-BR');
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, currentLanguage);
-    document.documentElement.lang = currentLanguage.split("-")[0];
-  }, [currentLanguage]);
+    const stored = localStorage.getItem(STORAGE_KEY) as Language | null;
+    if (stored && translations[stored]) {
+      setCurrentLanguage(stored);
+    }
+  }, []);
 
   const changeLanguage = useCallback((language: Language) => {
+    localStorage.setItem(STORAGE_KEY, language);
     setCurrentLanguage(language);
   }, []);
 
-  const value = useMemo<TranslationContextType>(
-    () => ({
-      currentLanguage,
-      t: translations[currentLanguage],
-      changeLanguage,
-      availableLanguages: AVAILABLE_LANGUAGES,
-    }),
-    [currentLanguage, changeLanguage]
-  );
-
   return (
-    <TranslationContext.Provider value={value}>
+    <TranslationContext.Provider
+      value={{
+        currentLanguage,
+        t: translations[currentLanguage],
+        changeLanguage,
+        availableLanguages: [...AVAILABLE_LANGUAGES],
+      }}
+    >
       {children}
     </TranslationContext.Provider>
   );
 };
 
-/**
- * Hook para acessar traduções
- */
-export const useTranslation = (): TranslationContextType => {
+export const useTranslation = () => {
   const context = React.useContext(TranslationContext);
   if (!context) {
-    throw new Error(
-      "useTranslation deve ser usado dentro de TranslationProvider"
-    );
+    throw new Error('useTranslation must be used inside TranslationProvider');
   }
   return context;
 };
-
-/**
- * Valida se a string é um idioma suportado
- */
-function isValidLanguage(value: string): value is Language {
-  return value in translations;
-}
-
-/**
- * Detecta idioma do navegador
- */
-function detectBrowserLanguage(lang: string): Language {
-  if (lang.startsWith("pt")) return "pt-BR";
-  if (lang.startsWith("de")) return "de";
-  if (lang.startsWith("es")) return "es";
-  if (lang.startsWith("en")) return "en";
-
-  return "pt-BR";
-}

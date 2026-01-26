@@ -1,57 +1,56 @@
 import logoTexto from "../assets/logo-texto.png";
 import { Link } from "react-router-dom";
-import { LanguageSelector } from "../components/LanguageSelector";
-import { useTranslation } from "../context/TranslationContext";
 
 export function Aprender() {
-  const { t } = useTranslation();
-
   const levels = [
     {
       icon: "🌱",
-      title: t("learn.beginner.title"),
+      title: "Nível Iniciante",
       route: "/iniciante",
-      description: t("learn.beginner.description"),
+      description:
+        "Aprenda os fundamentos da programação em JavaScript, começando do zero com conceitos simples e exemplos práticos.",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
     {
       icon: "🪴",
-      title: t("learn.intermediate.title"),
+      title: "Nível Intermediário",
       route: "/intermediario",
-      description: t("learn.intermediate.description"),
+      description:
+        "Aprofunde seus conhecimentos com estruturas mais complexas, lógica aplicada e desafios intermediários.",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
     {
       icon: "🌳",
-      title: t("learn.advanced.title"),
+      title: "Nível Avançado",
       route: "/avancado",
-      description: t("learn.advanced.description"),
+      description:
+        "Domine conceitos avançados de JavaScript, boas práticas, performance e resolução de problemas complexos.",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
   ];
+
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Header */}
       <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link to="/home">
-              <img
-                src={logoTexto}
-                alt="ThinkJS"
-                className="h-8 sm:h-10 md:h-12"
-              />
-            </Link>
-          </div>
-          <LanguageSelector />
+          <Link to="/home">
+            <img
+              src={logoTexto}
+              alt="ThinkJS"
+              className="h-8 sm:h-10 md:h-12"
+            />
+          </Link>
         </div>
       </div>
 
+      {/* Conteúdo */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-8 sm:mb-12 mt-6 sm:mt-8">
-          {t("learn.pageTitle")}
+          Escolha seu nível de aprendizado
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -76,22 +75,28 @@ export function Aprender() {
                 to={level.route}
                 className={`${level.buttonColor} text-gray-800 font-bold py-2.5 sm:py-3 px-8 sm:px-12 rounded-md transition-colors w-full text-sm sm:text-base text-center`}
               >
-                {t("learn.startButton")}
+                Iniciar aprendizado
               </Link>
             </div>
           ))}
         </div>
 
+        {/* Footer */}
         <footer className="bg-gray-50 text-center mt-12 sm:mt-16 py-6 text-xs sm:text-sm text-gray-500 px-4">
           <p className="text-xs text-gray-500 text-center mt-8">
-            Developers by{" "}
-            <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
+            Developed by{" "}
+            <a
+              href="https://www.linkedin.com/in/oewersson/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <strong>Ewersson Assis</strong>
             </a>{" "}
             and{" "}
             <a
               href="https://www.linkedin.com/in/maria-de-fatima-alves/"
               target="_blank"
+              rel="noreferrer"
             >
               <strong>Maria de Fátima</strong>
             </a>
