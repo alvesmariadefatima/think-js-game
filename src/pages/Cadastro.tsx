@@ -56,7 +56,7 @@ export function Cadastro() {
           />
         </div>
 
-        <h2 className="text-xl font-semibold mb-6">Cadastro</h2>
+        <h2 className="text-xl text-gray-700 font-semibold mb-6">Cadastro</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
