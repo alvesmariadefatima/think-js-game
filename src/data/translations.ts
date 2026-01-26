@@ -1,3 +1,5 @@
+export type Language = "pt-BR" | "de" | "es" | "en";
+
 export const translations = {
   'pt-BR': {
     // Autenticação
@@ -296,4 +298,8 @@ export const translations = {
     loja: 'Store',
     naoHaLicoes: 'No lessons available',
   },
-} as const;
+
+  de: { /* … */ },
+  es: { /* … */ },
+  en: { /* … */ },
+} 
