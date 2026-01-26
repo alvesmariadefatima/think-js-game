@@ -4,8 +4,12 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import { TranslationProvider } from "./context/TranslationContext";
 import { GameProvider } from "./context/GameContext";
+
+// Páginas
 import { Login } from "./pages/Login";
 import { Cadastro } from "./pages/Cadastro";
 import { Home } from "./pages/Home";
@@ -16,19 +20,38 @@ import Iniciante from "./pages/Iniciante";
 import Intermediario from "./pages/Intermediario";
 import Avancado from "./pages/Avancado";
 
+/* =========================
+   ROTAS PROTEGIDAS
+========================= */
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+
+  return isAuthenticated
+    ? <>{children}</>
+    : <Navigate to="/login" replace />;
 }
 
+/* =========================
+   ROTAS PÚBLICAS
+========================= */
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
-  return !isAuthenticated ? <>{children}</> : <Navigate to="/home" />;
+
+  return isAuthenticated
+    ? <Navigate to="/home" replace />
+    : <>{children}</>;
 }
 
+/* =========================
+   ROTAS DA APLICAÇÃO
+========================= */
 function AppRoutes() {
   return (
     <Routes>
+      {/* Rota padrão */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
+
+      {/* ===== PÚBLICAS ===== */}
       <Route
         path="/login"
         element={
@@ -44,6 +67,34 @@ function AppRoutes() {
           <PublicRoute>
             <Cadastro />
           </PublicRoute>
+        }
+      />
+
+      {/* ===== PROTEGIDAS ===== */}
+      <Route
+        path="/home"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/quiz/:lessonId"
+        element={
+          <PrivateRoute>
+            <Perguntas />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/parabens"
+        element={
+          <PrivateRoute>
+            <Parabens />
+          </PrivateRoute>
         }
       />
 
@@ -74,7 +125,7 @@ function AppRoutes() {
         }
       />
 
-      <Route 
+      <Route
         path="/avancado"
         element={
           <PrivateRoute>
@@ -83,49 +134,25 @@ function AppRoutes() {
         }
       />
 
-      <Route
-        path="/home"
-        element={
-          <PrivateRoute>
-            <Home />
-          </PrivateRoute>
-        }
-      />
-
-      <Route
-        path="/perguntas"
-        element={
-          <PrivateRoute>
-            <Perguntas />
-          </PrivateRoute>
-        }
-      />
-
-      <Route
-        path="/parabens"
-        element={
-          <PrivateRoute>
-            <Parabens />
-          </PrivateRoute>
-        }
-      />
-
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="*" element={<Navigate to="/login" />} />
+      {/* 404 */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
 
-function App() {
+/* =========================
+   APP PRINCIPAL
+========================= */
+export default function App() {
   return (
     <Router>
       <AuthProvider>
-        <GameProvider>
-          <AppRoutes />
-        </GameProvider>
+        <TranslationProvider>
+          <GameProvider>
+            <AppRoutes />
+          </GameProvider>
+        </TranslationProvider>
       </AuthProvider>
     </Router>
   );
 }
-
-export default App;
