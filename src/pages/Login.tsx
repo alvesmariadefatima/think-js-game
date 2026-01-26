@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from '../context/TranslationContext';
 import LanguageSelector from '../components/LanguageSelector';
+import { useAuth } from "../context/AuthContext";
 import logo from '../assets/logo.png';
 
 export const Login: React.FC = () => {
+  const { login } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -18,21 +20,15 @@ export const Login: React.FC = () => {
     setLoading(true);
     setError('');
 
-    try {
-      if (email && password) {
-        setTimeout(() => {
-          navigate('/home');
-          setLoading(false);
-        }, 1000);
-      } else {
-        setError(t.erro);
+      try {
+        await login(email, password); 
+        navigate("/home");            
+      } catch (err: any) {
+        setError(err.message || t.erro);
+      } finally {
         setLoading(false);
       }
-    } catch {
-      setError(t.erro);
-      setLoading(false);
-    }
-  };
+    };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -114,13 +110,14 @@ className="
             )}
 
             {/* Botão Entrar */}
-            <button 
-              onClick={handleSubmit}
+            <button
+              type="submit"
               disabled={loading}
               className="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-gray-400 text-gray-800 font-bold py-3 rounded-lg"
-            >
+              >
               {loading ? t.carregando : t.entrar}
             </button>
+
           </form>
 
           {/* Esqueci senha */}
