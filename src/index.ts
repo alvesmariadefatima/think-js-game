@@ -4,6 +4,7 @@ export {
   TranslationProvider, 
   useTranslation 
 } from './context/TranslationContext';
+import { Language } from "./data/translations";
 
 // ===== COMPONENTES =====
 export { LanguageSelector } from './components/LanguageSelector';

@@ -1,7 +1,7 @@
 import logoTexto from "../assets/logo-texto.png";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../components/LanguageSelector";
+import { useTranslation } from "../context/TranslationContext";
 
 export function Aprender() {
   const { t } = useTranslation();

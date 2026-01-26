@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/GameContext";
-import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../components/LanguageSelector";
 import logoParabens from "../assets/logo-parabens.png";
+import { useTranslation } from "../context/TranslationContext";
 
 export function Parabens() {
   const { currentSession, resetQuiz } = useGame();

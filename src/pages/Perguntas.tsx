@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, X, Heart } from "lucide-react";
 import { useGame } from "../context/GameContext";
-import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../components/LanguageSelector";
+import { useTranslation } from "../context/TranslationContext";
 
 export function Perguntas() {
   const { currentSession, answerQuestion, nextQuestion, finishQuiz } =

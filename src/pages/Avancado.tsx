@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BookOpen, ChevronRight, ArrowLeft, X } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../components/LanguageSelector";
 import { getAdvancedTopics } from "../data/advancedtopics";
 import logoTexto from "../assets/logo-texto.png";
+import { useTranslation } from "../context/TranslationContext";
 
 export default function Avancado() {
   const [current, setCurrent] = useState(0);

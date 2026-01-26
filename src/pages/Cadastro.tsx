@@ -4,9 +4,9 @@ import { useAuth } from "../context/AuthContext";
 import { useTranslation } from "../context/TranslationContext";
 import LanguageSelector from "../components/LanguageSelector";
 import { validatePasswordMatch } from "../utils/validation";
-import { useTranslation } from "react-i18next";
 import { LanguageSelector } from "../components/LanguageSelector";
 import logo from "../assets/logo.png";
+import { useTranslation } from "../context/TranslationContext";
 
 export function Cadastro() {
   const { t } = useTranslation();
