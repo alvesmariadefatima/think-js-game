@@ -115,7 +115,7 @@ className="
 
             {/* Botão Entrar */}
             <button 
-              type="submit"
+              onClick={handleSubmit}
               disabled={loading}
               className="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-gray-400 text-gray-800 font-bold py-3 rounded-lg"
             >
