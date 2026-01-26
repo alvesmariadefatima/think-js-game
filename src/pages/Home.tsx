@@ -149,8 +149,8 @@ export function Home() {
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl p-4 shadow-sm space-y-2">
-          <Link to="/aprender" className="flex gap-3 p-3 hover:bg-gray-50 rounded-lg">
+        <div className="bg-white rounded-2xl p-4 text-gray-600 shadow-sm space-y-2">
+          <Link to="/aprender" className="flex gap-3 p-3 rounded-lg">
             <BookOpen size={20} /> {t.licoes}
           </Link>
 
