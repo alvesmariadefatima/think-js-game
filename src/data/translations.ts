@@ -1,5 +1,7 @@
 export type Language = "pt-BR" | "de" | "es" | "en";
 
+export type Translations = typeof translations['pt-BR'];
+
 export const translations = {
   'pt-BR': {
     // Autenticação
@@ -287,7 +289,7 @@ export const translations = {
     carregando: 'Loading...',
     erro: 'Error',
     sucesso: 'Completed',
-    sair: 'Logout',
+    logout: 'Logout',
     idioma: 'Language',
     perfil: 'Profile',
     configuracoes: 'Settings',
@@ -298,8 +300,4 @@ export const translations = {
     loja: 'Store',
     naoHaLicoes: 'No lessons available',
   },
-
-  de: { /* … */ },
-  es: { /* … */ },
-  en: { /* … */ },
 } 

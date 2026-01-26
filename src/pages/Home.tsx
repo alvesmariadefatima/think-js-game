@@ -21,17 +21,10 @@ export function Home() {
   const { startQuiz } = useGame();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { i18n, t } = useTranslation();
-  const [currentLessons, setCurrentLessons] = useState(
-    getLessons(i18n.language),
-  );
 
-  useEffect(() => {
-    setCurrentLessons(getLessons(i18n.language));
-  }, [i18n.language]);
-
-  const lessons = currentLessons;
-
+  /* =========================
+     CONTROLE DE LIÇÕES
+  ========================= */
   const isLessonUnlocked = (lessonId: string): boolean => {
     if (lessonId === "lesson-1") return true;
 
@@ -114,6 +107,7 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* ================= HEADER ================= */}
       <div className="bg-white border-b px-6 py-4">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <img src={logoTexto} alt="ThinkJS" className="h-12" />
@@ -122,6 +116,7 @@ export function Home() {
       </div>
 
       <div className="max-w-6xl mx-auto p-6">
+        {/* ================= BOAS-VINDAS ================= */}
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-gray-600">
             {t.ola}, {user?.name}!
@@ -129,6 +124,7 @@ export function Home() {
           <p className="text-gray-600">{t.dashboard}</p>
         </div>
 
+        {/* ================= TRILHAS ================= */}
         <div className="grid gap-4 mb-8">
           {trilhas.map((trilha) => (
             <div
@@ -147,7 +143,9 @@ export function Home() {
                     <h3 className="font-semibold text-lg text-gray-600">
                       {trilha.nivel}
                     </h3>
-                    <p className="text-sm text-gray-600 text-left">{trilha.questoes}</p>
+                    <p className="text-sm text-gray-600 text-left">
+                      {trilha.questoes}
+                    </p>
                   </div>
                 </div>
 
@@ -159,30 +157,31 @@ export function Home() {
           ))}
         </div>
 
+        {/* ================= MENU ================= */}
         <div className="bg-white rounded-2xl p-4 text-gray-600 shadow-sm space-y-2">
           <Link to="/aprender" className="flex gap-3 p-3 rounded-lg">
             <BookOpen size={20} /> {t.licoes}
           </Link>
 
-          <div className="flex gap-3 p-3 text-gray-600">
+          <div className="flex gap-3 p-3">
             <Target size={20} /> {t.continuarLicao}
           </div>
 
-          <div className="flex gap-3 p-3 text-gray-600">
+          <div className="flex gap-3 p-3">
             <BarChart3 size={20} /> {t.desempenho}
           </div>
 
-          <div className="flex gap-3 p-3 text-gray-600">
+          <div className="flex gap-3 p-3">
             <Store size={20} /> {t.loja}
           </div>
 
-          <div className="flex gap-3 p-3 text-gray-600">
+          <div className="flex gap-3 p-3">
             <Settings size={20} /> {t.configuracoes}
           </div>
 
           <button
             onClick={handleLogout}
-            className="flex gap-3 p-3 text-gray-600 hover:bg-gray-50 rounded-lg w-full"
+            className="flex gap-3 p-3 hover:bg-gray-50 rounded-lg w-full"
           >
             <LogOut size={20} /> {t.sair}
           </button>
