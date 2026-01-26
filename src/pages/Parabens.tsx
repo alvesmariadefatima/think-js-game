@@ -1,14 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/GameContext";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 import logoParabens from "../assets/logo-parabens.png";
 
 export function Parabens() {
   const { currentSession, resetQuiz } = useGame();
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (!currentSession?.completedAt) {
@@ -40,9 +37,6 @@ export function Parabens() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="absolute top-4 right-4">
-        <LanguageSelector />
-      </div>
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-2xl">
         <div className="text-center">
           <div className="w-32 h-32 flex items-center justify-center mx-auto mb-6">
