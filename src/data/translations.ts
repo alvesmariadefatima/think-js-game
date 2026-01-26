@@ -1,85 +1,4 @@
-export type Language = 'pt-BR' | 'de' | 'es' | 'en';
-
-export interface Translations {
-  // Autenticação
-  login: string;
-  cadastro: string;
-  nomeUsuario: string;
-  email: string;
-  senha: string;
-  confirmarSenha: string;
-  esqueciMinhaSenha: string;
-  naoTemConta: string;
-  temConta: string;
-  entrar: string;
-  registrar: string;
-
-  // Dashboard/Home
-  bemVindo: string;
-  ola: string;
-  dashboard: string;
-  nivel: string;
-  pontos: string;
-  sequencia: string;
-  dias: string;
-  licoes: string;
-  iniciarLicao: string;
-  continuarLicao: string;
-  proximaLicao: string;
-
-  // Lições
-  licao: string;
-  perguntas: string;
-  dificuldade: string;
-  facil: string;
-  intermediario: string;
-  dificil: string;
-  topicos: string;
-
-  // Quiz
-  pergunta: string;
-  de: string;
-  proxima: string;
-  anterior: string;
-  enviar: string;
-  responder: string;
-  resultado: string;
-  correto: string;
-  incorreto: string;
-  explicacao: string;
-  exemplo: string;
-
-  // Resultados
-  parabens: string;
-  muitoBem: string;
-  desempenho: string;
-  acertos: string;
-  erros: string;
-  taxaAcerto: string;
-  tempoDecorrido: string;
-  pontuacaoObtida: string;
-  refazer: string;
-  voltar: string;
-  proximoDesafio: string;
-
-  // Geral
-  carregando: string;
-  erro: string;
-  sucesso: string;
-  sair: string;
-  idioma: string;
-  perfil: string;
-  configuracoes: string;
-  sobre: string;
-  ajuda: string;
-  fechar: string;
-  cancelar: string;
-  confirmar: string;
-  compartilhar: string;
-  naoHaLicoes: string;
-}
-
-export const translations: Record<Language, Translations> = {
+export const translations = {
   'pt-BR': {
     // Autenticação
     login: 'Entrar',
@@ -94,26 +13,27 @@ export const translations: Record<Language, Translations> = {
     entrar: 'Entrar',
     registrar: 'Cadastrar',
 
-    // Dashboard/Home
+    // Dashboard / Home
     bemVindo: 'Bem-vindo',
     ola: 'Olá',
     dashboard: 'Dashboard',
-    nivel: 'Nível',
+    nivel: 'Especialista',
     pontos: 'Pontos',
     sequencia: 'Sequência',
     dias: 'dias',
-    licoes: 'Lições',
-    iniciarLicao: 'Iniciar Lição',
-    continuarLicao: 'Continuar Lição',
+    licoes: 'Aprender',
+    iniciarLicao: '⭐ NÃO CONCLUÍDO',
+    continuarLicao: 'Praticar',
     proximaLicao: 'Próxima Lição',
+    bloqueado: '⭐ BLOQUEADO',
 
     // Lições
     licao: 'Lição',
     perguntas: 'Perguntas',
     dificuldade: 'Dificuldade',
-    facil: 'Fácil',
+    facil: 'Iniciante',
     intermediario: 'Intermediário',
-    dificil: 'Difícil',
+    dificil: 'Avançado',
     topicos: 'Tópicos',
 
     // Quiz
@@ -132,7 +52,7 @@ export const translations: Record<Language, Translations> = {
     // Resultados
     parabens: 'Parabéns!',
     muitoBem: 'Muito bem!',
-    desempenho: 'Desempenho',
+    desempenho: 'Estatísticas',
     acertos: 'Acertos',
     erros: 'Erros',
     taxaAcerto: 'Taxa de Acerto',
@@ -145,17 +65,16 @@ export const translations: Record<Language, Translations> = {
     // Geral
     carregando: 'Carregando...',
     erro: 'Erro',
-    sucesso: 'Sucesso',
+    sucesso: 'Concluído',
     sair: 'Sair',
     idioma: 'Idioma',
     perfil: 'Perfil',
     configuracoes: 'Configurações',
     sobre: 'Sobre',
     ajuda: 'Ajuda',
-    fechar: 'Fechar',
     cancelar: 'Cancelar',
     confirmar: 'Confirmar',
-    compartilhar: 'Compartilhar',
+    loja: 'Loja',
     naoHaLicoes: 'Nenhuma lição disponível',
   },
 
@@ -167,8 +86,8 @@ export const translations: Record<Language, Translations> = {
     senha: 'Passwort',
     confirmarSenha: 'Passwort bestätigen',
     esqueciMinhaSenha: 'Passwort vergessen',
-    naoTemConta: 'Kein Konto vorhanden?',
-    temConta: 'Haben Sie bereits ein Konto?',
+    naoTemConta: 'Kein Konto?',
+    temConta: 'Schon ein Konto?',
     entrar: 'Anmelden',
     registrar: 'Registrieren',
 
@@ -177,12 +96,13 @@ export const translations: Record<Language, Translations> = {
     dashboard: 'Dashboard',
     nivel: 'Stufe',
     pontos: 'Punkte',
-    sequencia: 'Sequenz',
+    sequencia: 'Serie',
     dias: 'Tage',
-    licoes: 'Lektionen',
-    iniciarLicao: 'Lektion starten',
-    continuarLicao: 'Lektion fortsetzen',
+    licoes: 'Lernen',
+    iniciarLicao: '⭐ LEKTION STARTEN',
+    continuarLicao: 'Üben',
     proximaLicao: 'Nächste Lektion',
+    bloqueado: '⭐ GESPERRT',
 
     licao: 'Lektion',
     perguntas: 'Fragen',
@@ -194,7 +114,7 @@ export const translations: Record<Language, Translations> = {
 
     pergunta: 'Frage',
     de: 'von',
-    proxima: 'Nächste',
+    proxima: 'Weiter',
     anterior: 'Zurück',
     enviar: 'Senden',
     responder: 'Antworten',
@@ -206,11 +126,11 @@ export const translations: Record<Language, Translations> = {
 
     parabens: 'Glückwunsch!',
     muitoBem: 'Sehr gut!',
-    desempenho: 'Leistung',
-    acertos: 'Richtige Antworten',
+    desempenho: 'Statistiken',
+    acertos: 'Richtig',
     erros: 'Fehler',
     taxaAcerto: 'Erfolgsquote',
-    tempoDecorrido: 'Verstrichene Zeit',
+    tempoDecorrido: 'Vergangene Zeit',
     pontuacaoObtida: 'Punktzahl',
     refazer: 'Wiederholen',
     voltar: 'Zurück',
@@ -218,17 +138,16 @@ export const translations: Record<Language, Translations> = {
 
     carregando: 'Wird geladen...',
     erro: 'Fehler',
-    sucesso: 'Erfolg',
+    sucesso: 'Abgeschlossen',
     sair: 'Abmelden',
     idioma: 'Sprache',
     perfil: 'Profil',
     configuracoes: 'Einstellungen',
     sobre: 'Über',
     ajuda: 'Hilfe',
-    fechar: 'Schließen',
     cancelar: 'Abbrechen',
     confirmar: 'Bestätigen',
-    compartilhar: 'Teilen',
+    loja: 'Shop',
     naoHaLicoes: 'Keine Lektionen verfügbar',
   },
 
@@ -240,8 +159,8 @@ export const translations: Record<Language, Translations> = {
     senha: 'Contraseña',
     confirmarSenha: 'Confirmar contraseña',
     esqueciMinhaSenha: 'Olvidé mi contraseña',
-    naoTemConta: '¿No tienes una cuenta?',
-    temConta: '¿Ya tienes una cuenta?',
+    naoTemConta: '¿No tienes cuenta?',
+    temConta: '¿Ya tienes cuenta?',
     entrar: 'Iniciar sesión',
     registrar: 'Registrarse',
 
@@ -252,10 +171,11 @@ export const translations: Record<Language, Translations> = {
     pontos: 'Puntos',
     sequencia: 'Racha',
     dias: 'días',
-    licoes: 'Lecciones',
-    iniciarLicao: 'Iniciar lección',
-    continuarLicao: 'Continuar lección',
-    proximaLicao: 'Siguiente lección',
+    licoes: 'Aprender',
+    iniciarLicao: '⭐ INICIAR LECCIÓN',
+    continuarLicao: 'Practicar',
+    proximaLicao: 'Siguiente Lección',
+    bloqueado: '⭐ BLOQUEADO',
 
     licao: 'Lección',
     perguntas: 'Preguntas',
@@ -279,29 +199,28 @@ export const translations: Record<Language, Translations> = {
 
     parabens: '¡Felicidades!',
     muitoBem: '¡Muy bien!',
-    desempenho: 'Desempeño',
+    desempenho: 'Estadísticas',
     acertos: 'Aciertos',
     erros: 'Errores',
-    taxaAcerto: 'Tasa de acierto',
-    tempoDecorrido: 'Tiempo transcurrido',
+    taxaAcerto: 'Tasa de Acierto',
+    tempoDecorrido: 'Tiempo Transcurrido',
     pontuacaoObtida: 'Puntuación',
     refazer: 'Repetir',
     voltar: 'Volver',
-    proximoDesafio: 'Siguiente desafío',
+    proximoDesafio: 'Siguiente Desafío',
 
     carregando: 'Cargando...',
     erro: 'Error',
-    sucesso: 'Éxito',
+    sucesso: 'Completado',
     sair: 'Cerrar sesión',
     idioma: 'Idioma',
     perfil: 'Perfil',
     configuracoes: 'Configuración',
     sobre: 'Acerca de',
     ajuda: 'Ayuda',
-    fechar: 'Cerrar',
     cancelar: 'Cancelar',
     confirmar: 'Confirmar',
-    compartilhar: 'Compartir',
+    loja: 'Tienda',
     naoHaLicoes: 'No hay lecciones disponibles',
   },
 
@@ -325,10 +244,11 @@ export const translations: Record<Language, Translations> = {
     pontos: 'Points',
     sequencia: 'Streak',
     dias: 'days',
-    licoes: 'Lessons',
-    iniciarLicao: 'Start Lesson',
-    continuarLicao: 'Continue Lesson',
+    licoes: 'Learn',
+    iniciarLicao: '⭐ START LESSON',
+    continuarLicao: 'Practice',
     proximaLicao: 'Next Lesson',
+    bloqueado: '⭐ LOCKED',
 
     licao: 'Lesson',
     perguntas: 'Questions',
@@ -352,7 +272,7 @@ export const translations: Record<Language, Translations> = {
 
     parabens: 'Congratulations!',
     muitoBem: 'Great job!',
-    desempenho: 'Performance',
+    desempenho: 'Statistics',
     acertos: 'Correct Answers',
     erros: 'Errors',
     taxaAcerto: 'Success Rate',
@@ -364,17 +284,16 @@ export const translations: Record<Language, Translations> = {
 
     carregando: 'Loading...',
     erro: 'Error',
-    sucesso: 'Success',
+    sucesso: 'Completed',
     sair: 'Logout',
     idioma: 'Language',
     perfil: 'Profile',
     configuracoes: 'Settings',
     sobre: 'About',
     ajuda: 'Help',
-    fechar: 'Close',
     cancelar: 'Cancel',
     confirmar: 'Confirm',
-    compartilhar: 'Share',
+    loja: 'Store',
     naoHaLicoes: 'No lessons available',
   },
-};
+} as const;
