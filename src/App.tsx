@@ -15,7 +15,7 @@ import { Cadastro } from "./pages/Cadastro";
 import { Home } from "./pages/Home";
 import { Perguntas } from "./pages/Perguntas";
 import { Parabens } from "./pages/Parabens";
-import Aprender from "./pages/Aprender";
+import { Aprender } from "./pages/Aprender";
 import Iniciante from "./pages/Iniciante";
 import Intermediario from "./pages/Intermediario";
 import Avancado from "./pages/Avancado";
@@ -145,7 +145,7 @@ function AppRoutes() {
 ========================= */
 export default function App() {
   return (
-    <Router>
+    <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
       <AuthProvider>
         <TranslationProvider>
           <GameProvider>

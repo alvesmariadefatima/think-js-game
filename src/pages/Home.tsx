@@ -21,6 +21,16 @@ export function Home() {
   const { startQuiz } = useGame();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { i18n, t } = useTranslation();
+  const [currentLessons, setCurrentLessons] = useState(
+    getLessons(i18n.language),
+  );
+
+  useEffect(() => {
+    setCurrentLessons(getLessons(i18n.language));
+  }, [i18n.language]);
+
+  const lessons = currentLessons;
 
   const isLessonUnlocked = (lessonId: string): boolean => {
     if (lessonId === "lesson-1") return true;

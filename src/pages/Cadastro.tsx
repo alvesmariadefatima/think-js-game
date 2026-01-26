@@ -4,6 +4,8 @@ import { useAuth } from "../context/AuthContext";
 import { useTranslation } from "../context/TranslationContext";
 import LanguageSelector from "../components/LanguageSelector";
 import { validatePasswordMatch } from "../utils/validation";
+import { useTranslation } from "react-i18next";
+import { LanguageSelector } from "../components/LanguageSelector";
 import logo from "../assets/logo.png";
 
 export function Cadastro() {
@@ -17,6 +19,7 @@ export function Cadastro() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
