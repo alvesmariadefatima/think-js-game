@@ -235,7 +235,10 @@ const topics: Topic[] = [
 export default function Iniciante() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-  const topics = useMemo(() => getBeginnerTopics("pt-BR"), []);
+  const topics = useMemo(
+    () => getBeginnerTopics("pt-BR"),
+    [],
+  );
   const topic = topics[current];
 
   return (
@@ -278,7 +281,9 @@ export default function Iniciante() {
         </div>
 
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl text-gray-700 font-bold">🌱 Iniciante</h1>
+          <h1 className="text-2xl text-gray-700 font-bold">
+            🌱 Nível Iniciante
+          </h1>
           <span className="text-sm text-gray-500">
             {current + 1} / {topics.length}
           </span>
@@ -322,7 +327,9 @@ export default function Iniciante() {
             }}
             className="px-6 py-3 rounded-xl font-semibold transition bg-yellow-400 text-black hover:bg-yellow-500"
           >
-            {current === topics.length - 1 ? "Finalizar" : "Avançar"}
+            {current === topics.length - 1
+              ? "Finalizar"
+              : "Próximo"}
           </button>
         </div>
       </div>

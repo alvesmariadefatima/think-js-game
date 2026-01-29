@@ -7,7 +7,7 @@ export function Aprender() {
       icon: "🌱",
       title: "Iniciante",
       route: "/iniciante",
-      description: "Conceitos básicos de JavaScript para quem está começando.",
+      description: "Comece do zero e aprenda os fundamentos do JavaScript",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
@@ -15,7 +15,7 @@ export function Aprender() {
       icon: "🪴",
       title: "Intermediário",
       route: "/intermediario",
-      description: "Tópicos intermediários para expandir seus conhecimentos.",
+      description: "Aprofunde seus conhecimentos em conceitos mais avançados",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
@@ -23,7 +23,7 @@ export function Aprender() {
       icon: "🌳",
       title: "Avançado",
       route: "/avancado",
-      description: "Conceitos avançados para desenvolvedores experientes.",
+      description: "Domine tópicos complexos e técnicas profissionais",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
@@ -46,7 +46,7 @@ export function Aprender() {
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-8 sm:mb-12 mt-6 sm:mt-8">
-          Escolha seu nível
+          Escolha seu Caminho de Aprendizado
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">

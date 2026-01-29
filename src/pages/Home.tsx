@@ -10,13 +10,22 @@ import {
 import { useAuth } from "../context/AuthContext";
 import { useGame } from "../context/GameContext";
 import { getLessons } from "../data/questions";
+import { useState, useEffect } from "react";
 import logoTexto from "../assets/logo-texto.png";
 
 export function Home() {
   const { user, logout } = useAuth();
   const { startQuiz } = useGame();
   const navigate = useNavigate();
-  const lessons = getLessons("pt-BR");
+  const [currentLessons, setCurrentLessons] = useState(
+    getLessons("pt-BR"),
+  );
+
+  useEffect(() => {
+    setCurrentLessons(getLessons("pt-BR"));
+  }, []);
+
+  const lessons = currentLessons;
 
   // Função para verificar se uma lição está desbloqueada
   const isLessonUnlocked = (lessonId: string): boolean => {
@@ -57,10 +66,10 @@ export function Home() {
     }
 
     if (lessonProgress && lessonProgress.correctAnswers >= 2) {
-      return "COMPLETADO";
+      return "CONCLUÍDO";
     }
 
-    return "NÃO COMPLETADO";
+    return "NÃO CONCLUÍDO";
   };
 
   const handleStartLesson = (lessonId: string) => {
@@ -80,28 +89,28 @@ export function Home() {
     {
       id: "lesson-1",
       nivel: "Iniciante",
-      questoes: `${lessons[0]?.questions.length || 0} questões`,
+      questoes: `${lessons[0]?.questions.length || 0} Questões`,
       status: getLessonStatus("lesson-1"),
       emoji: "😊",
     },
     {
       id: "lesson-2",
       nivel: "Intermediário",
-      questoes: `${lessons[1]?.questions.length || 0} questões`,
+      questoes: `${lessons[1]?.questions.length || 0} Questões`,
       status: getLessonStatus("lesson-2"),
       emoji: "🤔",
     },
     {
       id: "lesson-3",
       nivel: "Avançado",
-      questoes: `${lessons[2]?.questions.length || 0} questões`,
+      questoes: `${lessons[2]?.questions.length || 0} Questões`,
       status: getLessonStatus("lesson-3"),
       emoji: "😎",
     },
     {
       id: "lesson-4",
       nivel: "Especialista",
-      questoes: `50 questões`,
+      questoes: `50 Questões`,
       status: getLessonStatus("lesson-4"),
       emoji: "🤓",
     },
@@ -121,7 +130,7 @@ export function Home() {
       <div className="max-w-6xl mx-auto p-6">
         <div className="text-center mb-8">
           <h2 className="text-2xl text-gray-600 font-bold mb-2">
-            Olá, {user?.name}! 👋
+            Bem-vindo, {user?.name}!
           </h2>
           <p className="text-gray-600">Escolha uma trilha para começar</p>
         </div>
@@ -174,22 +183,28 @@ export function Home() {
             </button>
             <button className="w-full flex items-center  text-gray-600 gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <BarChart3 size={20} className="text-gray-600" />
-              <span className="font-medium">Estatísticas</span>
+              <span className="font-medium"> Estatísticas</span>
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Store size={20} className="text-gray-600" />
-              <span className="font-medium text-gray-600">Loja</span>
+              <span className="font-medium text-gray-600">
+                Loja
+              </span>
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Settings size={20} className="text-gray-600" />
-              <span className="font-medium text-gray-600">Configurações</span>
+              <span className="font-medium text-gray-600">
+                Configurações
+              </span>
             </button>
             <button
               onClick={handleLogout}
               className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition"
             >
               <LogOut size={20} className="text-gray-600" />
-              <span className="font-medium text-gray-600">Sair</span>
+              <span className="font-medium text-gray-600">
+                Sair
+              </span>
             </button>
           </div>
         </div>

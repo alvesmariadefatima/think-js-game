@@ -7,7 +7,10 @@ import logoTexto from "../assets/logo-texto.png";
 export default function Avancado() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-  const topics = useMemo(() => getAdvancedTopics("pt-BR"), []);
+  const topics = useMemo(
+    () => getAdvancedTopics("pt"),
+    [],
+  );
   const topic = topics[current];
 
   return (
@@ -44,7 +47,9 @@ export default function Avancado() {
         </div>
 
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">🌳 Avançado</h1>
+          <h1 className="text-2xl font-bold text-gray-900">
+            🌳 Nível Avançado
+          </h1>
         </div>
 
         <div className="bg-white p-6 rounded-2xl shadow space-y-4">
@@ -83,7 +88,9 @@ export default function Avancado() {
             }
             className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold"
           >
-            {current === topics.length - 1 ? "Finalizar" : "Avançar"}
+            {current === topics.length - 1
+              ? "Finalizar"
+              : "Próximo"}
           </button>
         </div>
       </div>

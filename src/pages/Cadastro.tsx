@@ -56,7 +56,9 @@ export function Cadastro() {
           />
         </div>
 
-        <h2 className="text-xl font-semibold mb-6">Criar nova conta</h2>
+        <h2 className="text-xl font-semibold mb-6">
+          Criar Conta
+        </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -74,7 +76,7 @@ export function Cadastro() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              E-mail
+              Email
             </label>
             <input
               type="email"
@@ -129,7 +131,7 @@ export function Cadastro() {
             disabled={loading}
             className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 rounded-lg transition"
           >
-            {loading ? "Carregando..." : "Cadastrar"}
+            {loading ? "Carregando..." : "Criar Conta"}
           </button>
         </div>
 

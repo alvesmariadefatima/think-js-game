@@ -44,13 +44,13 @@ export function Login() {
         </div>
 
         <h2 className="text-xl font-semibold mb-6  text-gray-600">
-          Entrar na sua conta
+          Entrar
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              E-mail
+              Email
             </label>
             <input
               type="email"
@@ -91,12 +91,12 @@ export function Login() {
 
         <Link to="/cadastro">
           <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-3 rounded-lg mt-3 transition">
-            Criar conta
+            Criar Conta
           </button>
         </Link>
 
         <button className="w-full text-sm text-gray-600 hover:text-gray-900 mt-4">
-          Esqueci minha senha
+          Esqueceu a senha?
         </button>
 
         <p className="text-xs text-gray-500 text-center mt-8">
