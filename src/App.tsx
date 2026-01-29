@@ -15,6 +15,7 @@ import { Aprender } from "./pages/Aprender";
 import Iniciante from "./pages/Iniciante";
 import Intermediario from "./pages/Intermediario";
 import Avancado from "./pages/Avancado";
+import Homepage from "./pages/Homepage";
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
@@ -29,6 +30,16 @@ function PublicRoute({ children }: { children: React.ReactNode }) {
 function AppRoutes() {
   return (
     <Routes>
+
+      <Route 
+        path="/"
+        element={
+          <PublicRoute>
+            <Homepage />
+          </PublicRoute>
+        }
+      />
+
       <Route
         path="/login"
         element={
@@ -110,8 +121,8 @@ function AppRoutes() {
         }
       />
 
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="/" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
