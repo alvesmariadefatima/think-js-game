@@ -40,7 +40,7 @@ export function Login() {
             <img
               src={logo}
               alt="ThinkJS Logo"
-              className="w-100 h-100"
+              className="h-12 sm:h-14 md:h-16 lg:h-20"
             />
           </Link>
         </div>

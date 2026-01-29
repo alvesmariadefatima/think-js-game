@@ -50,7 +50,7 @@ export function Cadastro() {
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
         <div className="flex justify-center items-center">
           <Link to="/">
-            <img src={logo} alt="ThinkJS" className="h-30 sm:h-20 md:h-24 lg:h-28" />
+            <img src={logo} alt="ThinkJS" className="h-12 sm:h-14 md:h-16 lg:h-20" />
           </Link>
         </div>
 
