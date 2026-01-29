@@ -15,7 +15,7 @@ import { Aprender } from "./pages/Aprender";
 import Iniciante from "./pages/Iniciante";
 import Intermediario from "./pages/Intermediario";
 import Avancado from "./pages/Avancado";
-import Homepage from "./pages/Homepage";
+import { Homepage } from "./pages/Homepage";
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAuth();
