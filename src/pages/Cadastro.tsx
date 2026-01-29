@@ -48,15 +48,13 @@ export function Cadastro() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
-        <div className="flex items-center gap-3 mb-8">
-          <img
-            src={logo}
-            alt="ThinkJS Logo"
-            className="w-100 h-100 items-center justify-center mx-auto"
-          />
+        <div className="flex justify-center items-center">
+          <Link to="/">
+            <img src={logo} alt="ThinkJS" className="h-30 sm:h-20 md:h-24 lg:h-28" />
+          </Link>
         </div>
 
-        <h2 className="text-xl font-semibold mb-6">
+        <h2 className="text-xl text-gray-700 font-semibold mb-6">
           Criar Conta
         </h2>
 
