@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 import logo from "../assets/logo.png";
 
 export function Login() {
@@ -10,7 +8,6 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { t } = useTranslation();
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -37,9 +34,6 @@ export function Login() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="absolute top-4 right-4">
-        <LanguageSelector />
-      </div>
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
         <div className="flex items-center gap-3 mb-8">
           <img
@@ -50,13 +44,13 @@ export function Login() {
         </div>
 
         <h2 className="text-xl font-semibold mb-6  text-gray-600">
-          {t("auth.login.title")}
+          Entrar
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t("auth.login.email")}
+              Email
             </label>
             <input
               type="email"
@@ -69,7 +63,7 @@ export function Login() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t("auth.login.password")}
+              Senha
             </label>
             <input
               type="password"
@@ -92,17 +86,17 @@ export function Login() {
           disabled={loading}
           className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 rounded-lg mt-6 transition"
         >
-          {loading ? t("common.loading") : t("auth.login.button")}
+          {loading ? "Carregando..." : "Entrar"}
         </button>
 
         <Link to="/cadastro">
           <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-3 rounded-lg mt-3 transition">
-            {t("auth.login.register")}
+            Criar Conta
           </button>
         </Link>
 
         <button className="w-full text-sm text-gray-600 hover:text-gray-900 mt-4">
-          {t("auth.login.forgotPassword")}
+          Esqueceu a senha?
         </button>
 
         <p className="text-xs text-gray-500 text-center mt-8">

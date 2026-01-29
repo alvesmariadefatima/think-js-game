@@ -1,18 +1,15 @@
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BookOpen, ChevronRight, ArrowLeft, X } from "lucide-react";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 import { getIntermediateTopics } from "../data/intermediatetopics";
 import logoTexto from "../assets/logo-texto.png";
 
 export default function Intermediario() {
   const [current, setCurrent] = useState(0);
-  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const topics = useMemo(
-    () => getIntermediateTopics(i18n.language),
-    [i18n.language],
+    () => getIntermediateTopics("pt-BR"),
+    [],
   );
   const topic = topics[current];
 
@@ -22,7 +19,6 @@ export default function Intermediario() {
       <nav className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <img src={logoTexto} alt="ThinkJS" className="h-10" />
-          <LanguageSelector />
         </div>
       </nav>
 
@@ -52,7 +48,7 @@ export default function Intermediario() {
 
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">
-            🪴 {t("levels.intermediate.title")}
+            🪴 Nível Intermediário
           </h1>
         </div>
 
@@ -67,7 +63,7 @@ export default function Intermediario() {
 
         <div className="bg-yellow-50 p-6 rounded-2xl space-y-3">
           <div className="text-gray-700 flex items-center gap-2 font-semibold">
-            <BookOpen size={18} /> {t("levels.complementaryMaterial")}
+            <BookOpen size={18} /> Material Complementar
           </div>
           {topic.readings.map((r, i) => (
             <a
@@ -93,8 +89,8 @@ export default function Intermediario() {
             className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold"
           >
             {current === topics.length - 1
-              ? t("levels.finish")
-              : t("levels.advance")}
+              ? "Finalizar"
+              : "Próximo"}
           </button>
         </div>
       </div>

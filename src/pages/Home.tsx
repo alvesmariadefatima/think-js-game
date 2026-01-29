@@ -9,24 +9,21 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useGame } from "../context/GameContext";
-import { useTranslation } from "react-i18next";
 import { getLessons } from "../data/questions";
 import { useState, useEffect } from "react";
-import { LanguageSelector } from "../components/LanguageSelector";
 import logoTexto from "../assets/logo-texto.png";
 
 export function Home() {
   const { user, logout } = useAuth();
   const { startQuiz } = useGame();
   const navigate = useNavigate();
-  const { i18n, t } = useTranslation();
   const [currentLessons, setCurrentLessons] = useState(
-    getLessons(i18n.language),
+    getLessons("pt-BR"),
   );
 
   useEffect(() => {
-    setCurrentLessons(getLessons(i18n.language));
-  }, [i18n.language]);
+    setCurrentLessons(getLessons("pt-BR"));
+  }, []);
 
   const lessons = currentLessons;
 
@@ -65,14 +62,14 @@ export function Home() {
     );
 
     if (!isLessonUnlocked(lessonId)) {
-      return t("home.status.locked");
+      return "BLOQUEADO";
     }
 
     if (lessonProgress && lessonProgress.correctAnswers >= 2) {
-      return t("home.status.completed");
+      return "CONCLUÍDO";
     }
 
-    return t("home.status.notCompleted");
+    return "NÃO CONCLUÍDO";
   };
 
   const handleStartLesson = (lessonId: string) => {
@@ -91,29 +88,29 @@ export function Home() {
   const trilhas = [
     {
       id: "lesson-1",
-      nivel: t("home.levels.beginner"),
-      questoes: `${lessons[0]?.questions.length || 0} ${t("home.stats.questions")}`,
+      nivel: "Iniciante",
+      questoes: `${lessons[0]?.questions.length || 0} Questões`,
       status: getLessonStatus("lesson-1"),
       emoji: "😊",
     },
     {
       id: "lesson-2",
-      nivel: t("home.levels.intermediate"),
-      questoes: `${lessons[1]?.questions.length || 0} ${t("home.stats.questions")}`,
+      nivel: "Intermediário",
+      questoes: `${lessons[1]?.questions.length || 0} Questões`,
       status: getLessonStatus("lesson-2"),
       emoji: "🤔",
     },
     {
       id: "lesson-3",
-      nivel: t("home.levels.advanced"),
-      questoes: `${lessons[2]?.questions.length || 0} ${t("home.stats.questions")}`,
+      nivel: "Avançado",
+      questoes: `${lessons[2]?.questions.length || 0} Questões`,
       status: getLessonStatus("lesson-3"),
       emoji: "😎",
     },
     {
       id: "lesson-4",
-      nivel: t("home.levels.expert"),
-      questoes: `50 ${t("home.stats.questions")}`,
+      nivel: "Especialista",
+      questoes: `50 Questões`,
       status: getLessonStatus("lesson-4"),
       emoji: "🤓",
     },
@@ -127,16 +124,15 @@ export function Home() {
           <div className="flex items-center gap-3">
             <img src={logoTexto} alt="ThinkJS" className="h-50" />
           </div>
-          <LanguageSelector />
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto p-6">
         <div className="text-center mb-8">
           <h2 className="text-2xl text-gray-600 font-bold mb-2">
-            {t("home.welcome", { name: user?.name })}
+            Bem-vindo, {user?.name}!
           </h2>
-          <p className="text-gray-600">{t("home.subtitle")}</p>
+          <p className="text-gray-600">Escolha uma trilha para começar</p>
         </div>
 
         {/* Trilhas */}
@@ -178,27 +174,27 @@ export function Home() {
             <button className="w-full flex text-gray-600 items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <BookOpen size={20} className="text-gray-600" />
               <Link to="/aprender">
-                <span className="font-medium">{t("home.menu.learn")}</span>
+                <span className="font-medium">Aprender</span>
               </Link>
             </button>
             <button className="w-full flex items-center text-gray-600 gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Target size={20} className="text-gray-600" />
-              <span className="font-medium">{t("home.menu.practice")}</span>
+              <span className="font-medium">Praticar</span>
             </button>
             <button className="w-full flex items-center  text-gray-600 gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <BarChart3 size={20} className="text-gray-600" />
-              <span className="font-medium"> {t("home.menu.statistics")}</span>
+              <span className="font-medium"> Estatísticas</span>
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Store size={20} className="text-gray-600" />
               <span className="font-medium text-gray-600">
-                {t("home.menu.store")}
+                Loja
               </span>
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Settings size={20} className="text-gray-600" />
               <span className="font-medium text-gray-600">
-                {t("home.menu.settings")}
+                Configurações
               </span>
             </button>
             <button
@@ -207,7 +203,7 @@ export function Home() {
             >
               <LogOut size={20} className="text-gray-600" />
               <span className="font-medium text-gray-600">
-                {t("common.logout")}
+                Sair
               </span>
             </button>
           </div>

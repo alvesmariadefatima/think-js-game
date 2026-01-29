@@ -1,8 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BookOpen, ChevronRight, ArrowLeft, X } from "lucide-react";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 import { getBeginnerTopics } from "../data/beginnertopics";
 import logoTexto from "../assets/logo-texto.png";
 
@@ -236,11 +234,10 @@ const topics: Topic[] = [
 
 export default function Iniciante() {
   const [current, setCurrent] = useState(0);
-  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const topics = useMemo(
-    () => getBeginnerTopics(i18n.language),
-    [i18n.language],
+    () => getBeginnerTopics("pt-BR"),
+    [],
   );
   const topic = topics[current];
 
@@ -253,7 +250,6 @@ export default function Iniciante() {
             <div className="flex items-center gap-3">
               <img src={logoTexto} alt="ThinkJS" className="h-50" />
             </div>
-            <LanguageSelector />
           </div>
         </div>
       </nav>
@@ -286,7 +282,7 @@ export default function Iniciante() {
 
         <div className="flex justify-between items-center">
           <h1 className="text-2xl text-gray-700 font-bold">
-            🌱 {t("levels.beginner.title")}
+            🌱 Nível Iniciante
           </h1>
           <span className="text-sm text-gray-500">
             {current + 1} / {topics.length}
@@ -304,7 +300,7 @@ export default function Iniciante() {
 
         <div className="bg-yellow-50 rounded-2xl p-6 space-y-3">
           <div className="text-gray-700 flex items-center gap-2 font-semibold">
-            <BookOpen size={18} /> {t("levels.complementaryMaterial")}
+            <BookOpen size={18} /> Material Complementar
           </div>
           {topic.readings.map((r, i) => (
             <a
@@ -332,8 +328,8 @@ export default function Iniciante() {
             className="px-6 py-3 rounded-xl font-semibold transition bg-yellow-400 text-black hover:bg-yellow-500"
           >
             {current === topics.length - 1
-              ? t("levels.finish")
-              : t("levels.advance")}
+              ? "Finalizar"
+              : "Próximo"}
           </button>
         </div>
       </div>
