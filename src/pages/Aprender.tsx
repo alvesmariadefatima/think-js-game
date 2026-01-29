@@ -1,33 +1,29 @@
 import logoTexto from "../assets/logo-texto.png";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 
 export function Aprender() {
-  const { t } = useTranslation();
-
   const levels = [
     {
       icon: "🌱",
-      title: t("learn.beginner.title"),
+      title: "Iniciante",
       route: "/iniciante",
-      description: t("learn.beginner.description"),
+      description: "Conceitos básicos de JavaScript para quem está começando.",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
     {
       icon: "🪴",
-      title: t("learn.intermediate.title"),
+      title: "Intermediário",
       route: "/intermediario",
-      description: t("learn.intermediate.description"),
+      description: "Tópicos intermediários para expandir seus conhecimentos.",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
     {
       icon: "🌳",
-      title: t("learn.advanced.title"),
+      title: "Avançado",
       route: "/avancado",
-      description: t("learn.advanced.description"),
+      description: "Conceitos avançados para desenvolvedores experientes.",
       bgColor: "bg-gray-50",
       buttonColor: "bg-yellow-400 hover:bg-yellow-500",
     },
@@ -45,13 +41,12 @@ export function Aprender() {
               />
             </Link>
           </div>
-          <LanguageSelector />
         </div>
       </div>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-8 sm:mb-12 mt-6 sm:mt-8">
-          {t("learn.pageTitle")}
+          Escolha seu nível
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -76,7 +71,7 @@ export function Aprender() {
                 to={level.route}
                 className={`${level.buttonColor} text-gray-800 font-bold py-2.5 sm:py-3 px-8 sm:px-12 rounded-md transition-colors w-full text-sm sm:text-base text-center`}
               >
-                {t("learn.startButton")}
+                Começar
               </Link>
             </div>
           ))}

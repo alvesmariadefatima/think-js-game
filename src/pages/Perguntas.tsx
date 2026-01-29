@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, X, Heart } from "lucide-react";
 import { useGame } from "../context/GameContext";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 
 export function Perguntas() {
   const { currentSession, answerQuestion, nextQuestion, finishQuiz } =
     useGame();
   const navigate = useNavigate();
-  const { t } = useTranslation();
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [lives] = useState(10);
@@ -117,16 +114,8 @@ export function Perguntas() {
               />
             </div>
             <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>
-                {t("questions.question", {
-                  current: currentSession.currentQuestionIndex + 1,
-                })}
-              </span>
-              <span>
-                {t("questions.totalQuestions", {
-                  total: currentSession.questions.length,
-                })}
-              </span>
+              <span>Questão {currentSession.currentQuestionIndex + 1}</span>
+              <span>Total: {currentSession.questions.length}</span>
             </div>
           </div>
         </div>
@@ -173,13 +162,11 @@ export function Perguntas() {
 
         {showExplanation && (
           <div className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-            <h3 className="font-bold text-blue-900 mb-2">
-              📚 {t("questions.explanation")}
-            </h3>
+            <h3 className="font-bold text-blue-900 mb-2">📚 Explicação</h3>
             <p className="text-blue-800">{currentQuestion.explanation}</p>
             {selectedAnswer === currentQuestion.correctAnswer && (
               <div className="mt-3 text-green-600 font-semibold">
-                🎉 {t("questions.congratsXp", { xp: currentQuestion.xpReward })}
+                🎉 Parabéns! Você ganhou {currentQuestion.xpReward} XP!
               </div>
             )}
           </div>
@@ -192,13 +179,13 @@ export function Perguntas() {
               disabled={!hasAnswered}
               className="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-gray-300 disabled:cursor-not-allowed text-gray-900 font-semibold py-4 rounded-xl transition"
             >
-              {t("questions.submit")}
+              Enviar Resposta
             </button>
             <button
               onClick={() => navigate("/home")}
               className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-4 rounded-xl mt-4 transition"
             >
-              {t("questions.skip")}
+              Pular Questão
             </button>
           </>
         ) : (
@@ -206,9 +193,7 @@ export function Perguntas() {
             onClick={handleNext}
             className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 rounded-xl transition"
           >
-            {isLastQuestion
-              ? `${t("questions.viewResults")} 🎉`
-              : `${t("questions.next")} →`}
+            {isLastQuestion ? `Ver Resultados 🎉` : `Próxima →`}
           </button>
         )}
 

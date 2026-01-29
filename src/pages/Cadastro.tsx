@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { validatePasswordMatch } from "../utils/validation";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 import logo from "../assets/logo.png";
 
 export function Cadastro() {
@@ -13,7 +11,6 @@ export function Cadastro() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { t } = useTranslation();
 
   const { register } = useAuth();
   const navigate = useNavigate();
@@ -50,9 +47,6 @@ export function Cadastro() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="absolute top-4 right-4">
-        <LanguageSelector />
-      </div>
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
         <div className="flex items-center gap-3 mb-8">
           <img
@@ -62,14 +56,12 @@ export function Cadastro() {
           />
         </div>
 
-        <h2 className="text-xl font-semibold mb-6">
-          {t("auth.register.title")}
-        </h2>
+        <h2 className="text-xl font-semibold mb-6">Criar nova conta</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t("auth.register.name")}
+              Nome
             </label>
             <input
               type="text"
@@ -82,7 +74,7 @@ export function Cadastro() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t("auth.register.email")}
+              E-mail
             </label>
             <input
               type="email"
@@ -95,7 +87,7 @@ export function Cadastro() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t("auth.register.password")}
+              Senha
             </label>
             <input
               type="password"
@@ -129,7 +121,7 @@ export function Cadastro() {
         <div className="flex gap-3 mt-6">
           <Link to="/login" className="flex-1">
             <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-3 rounded-lg transition">
-              {t("common.back")}
+              Voltar
             </button>
           </Link>
           <button
@@ -137,7 +129,7 @@ export function Cadastro() {
             disabled={loading}
             className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 rounded-lg transition"
           >
-            {loading ? t("common.loading") : t("auth.register.button")}
+            {loading ? "Carregando..." : "Cadastrar"}
           </button>
         </div>
 

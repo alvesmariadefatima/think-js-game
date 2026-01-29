@@ -1,19 +1,13 @@
 import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BookOpen, ChevronRight, ArrowLeft, X } from "lucide-react";
-import { useTranslation } from "react-i18next";
-import { LanguageSelector } from "../components/LanguageSelector";
 import { getAdvancedTopics } from "../data/advancedtopics";
 import logoTexto from "../assets/logo-texto.png";
 
 export default function Avancado() {
   const [current, setCurrent] = useState(0);
-  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const topics = useMemo(
-    () => getAdvancedTopics(i18n.language),
-    [i18n.language],
-  );
+  const topics = useMemo(() => getAdvancedTopics("pt-BR"), []);
   const topic = topics[current];
 
   return (
@@ -22,7 +16,6 @@ export default function Avancado() {
       <nav className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <img src={logoTexto} alt="ThinkJS" className="h-10" />
-          <LanguageSelector />
         </div>
       </nav>
 
@@ -51,9 +44,7 @@ export default function Avancado() {
         </div>
 
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">
-            🌳 {t("levels.advanced.title")}
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-900">🌳 Avançado</h1>
         </div>
 
         <div className="bg-white p-6 rounded-2xl shadow space-y-4">
@@ -67,7 +58,7 @@ export default function Avancado() {
 
         <div className="bg-yellow-50 p-6 rounded-2xl space-y-3">
           <div className="text-gray-700 flex items-center gap-2 font-semibold">
-            <BookOpen size={18} /> {t("levels.complementaryMaterial")}
+            <BookOpen size={18} /> Material Complementar
           </div>
           {topic.readings.map((r, i) => (
             <a
@@ -92,9 +83,7 @@ export default function Avancado() {
             }
             className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold"
           >
-            {current === topics.length - 1
-              ? t("levels.finish")
-              : t("levels.advance")}
+            {current === topics.length - 1 ? "Finalizar" : "Avançar"}
           </button>
         </div>
       </div>
