@@ -115,14 +115,10 @@ export function Perguntas() {
             </div>
             <div className="flex justify-between text-xs text-gray-500 mt-1">
               <span>
-                {t("questions.question", {
-                  current: currentSession.currentQuestionIndex + 1,
-                })}
+                Pergunta {currentSession.currentQuestionIndex + 1}
               </span>
               <span>
-                {t("questions.totalQuestions", {
-                  total: currentSession.questions.length,
-                })}
+                Total: {currentSession.questions.length}
               </span>
             </div>
           </div>
@@ -171,12 +167,12 @@ export function Perguntas() {
         {showExplanation && (
           <div className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
             <h3 className="font-bold text-blue-900 mb-2">
-              📚 {t("questions.explanation")}
+              📚 Explicação
             </h3>
             <p className="text-blue-800">{currentQuestion.explanation}</p>
             {selectedAnswer === currentQuestion.correctAnswer && (
               <div className="mt-3 text-green-600 font-semibold">
-                🎉 {t("questions.congratsXp", { xp: currentQuestion.xpReward })}
+                🎉 Parabéns! Você ganhou {currentQuestion.xpReward} XP
               </div>
             )}
           </div>
@@ -189,13 +185,13 @@ export function Perguntas() {
               disabled={!hasAnswered}
               className="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-gray-300 disabled:cursor-not-allowed text-gray-900 font-semibold py-4 rounded-xl transition"
             >
-              {t("questions.submit")}
+              Confirmar
             </button>
             <button
               onClick={() => navigate("/home")}
               className="w-full bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-4 rounded-xl mt-4 transition"
             >
-              {t("questions.skip")}
+              Pular
             </button>
           </>
         ) : (
@@ -204,8 +200,8 @@ export function Perguntas() {
             className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 rounded-xl transition"
           >
             {isLastQuestion
-              ? `${t("questions.viewResults")} 🎉`
-              : `${t("questions.next")} →`}
+              ? `Ver Resultados 🎉`
+              : `Próxima Pergunta →`}
           </button>
         )}
 

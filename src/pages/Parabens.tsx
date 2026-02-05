@@ -44,10 +44,7 @@ export function Parabens() {
           </div>
 
           <h2 className="text-2xl font-bold mb-4 text-gray-600">
-            {t("congratulations.title", {
-              correct: correctAnswers,
-              total: totalQuestions,
-            })}
+            Parabéns! Você acertou {correctAnswers} de {totalQuestions} questões!
           </h2>
 
           <div className="grid grid-cols-3 gap-6 mb-8">
@@ -57,7 +54,7 @@ export function Parabens() {
                 {correctAnswers}/{totalQuestions}
               </div>
               <div className="text-sm text-gray-600">
-                {t("congratulations.stats.correctAnswers")}
+                Respostas Corretas
               </div>
             </div>
 
@@ -68,10 +65,10 @@ export function Parabens() {
               </div>
               <div className="text-sm text-gray-600">
                 <span className="hidden sm:inline">
-                  {t("congratulations.stats.performance")}
+                  Desempenho
                 </span>
                 <span className="sm:hidden">
-                  {t("congratulations.stats.performanceShort")}
+                  Desempenho
                 </span>
               </div>
             </div>
@@ -82,7 +79,7 @@ export function Parabens() {
                 +{totalXpEarned}
               </div>
               <div className="text-sm text-gray-600">
-                {t("congratulations.stats.xpEarned")}
+                XP Ganho
               </div>
             </div>
           </div>
@@ -92,13 +89,13 @@ export function Parabens() {
               onClick={handleRetry}
               className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-4 rounded-xl transition"
             >
-              🔄 {t("congratulations.tryAgain")}
+              🔄 Tentar Novamente
             </button>
             <button
               onClick={handleContinue}
               className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 rounded-xl transition"
             >
-              {t("congratulations.continue")} →
+              Continuar →
             </button>
           </div>
 
