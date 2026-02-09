@@ -1,5 +1,6 @@
-import logoTexto from "../assets/logo-texto.png";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export function Aprender() {
   const levels = [
@@ -30,19 +31,7 @@ export function Aprender() {
   ];
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link to="/home">
-              <img
-                src={logoTexto}
-                alt="ThinkJS"
-                className="h-8 sm:h-10 md:h-12"
-              />
-            </Link>
-          </div>
-        </div>
-      </div>
+      <Navbar />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-8 sm:mb-12 mt-6 sm:mt-8">
@@ -77,21 +66,7 @@ export function Aprender() {
           ))}
         </div>
 
-        <footer className="bg-gray-50 text-center mt-12 sm:mt-16 py-6 text-xs sm:text-sm text-gray-500 px-4">
-          <p className="text-xs text-gray-500 text-center mt-8">
-            Developers by{" "}
-            <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-              <strong>Ewersson Assis</strong>
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-              target="_blank"
-            >
-              <strong>Maria de Fátima</strong>
-            </a>
-          </p>
-        </footer>
+        <Footer />
       </main>
     </div>
   );

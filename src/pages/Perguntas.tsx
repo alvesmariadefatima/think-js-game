@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, X, Heart } from "lucide-react";
 import { useGame } from "../context/GameContext";
+import Footer from "../components/Footer";
 
 export function Perguntas() {
   const { currentSession, answerQuestion, nextQuestion, finishQuiz } =
@@ -114,12 +115,8 @@ export function Perguntas() {
               />
             </div>
             <div className="flex justify-between text-xs text-gray-500 mt-1">
-              <span>
-                Pergunta {currentSession.currentQuestionIndex + 1}
-              </span>
-              <span>
-                Total: {currentSession.questions.length}
-              </span>
+              <span>Pergunta {currentSession.currentQuestionIndex + 1}</span>
+              <span>Total: {currentSession.questions.length}</span>
             </div>
           </div>
         </div>
@@ -166,9 +163,7 @@ export function Perguntas() {
 
         {showExplanation && (
           <div className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-            <h3 className="font-bold text-blue-900 mb-2">
-              📚 Explicação
-            </h3>
+            <h3 className="font-bold text-blue-900 mb-2">📚 Explicação</h3>
             <p className="text-blue-800">{currentQuestion.explanation}</p>
             {selectedAnswer === currentQuestion.correctAnswer && (
               <div className="mt-3 text-green-600 font-semibold">
@@ -199,25 +194,11 @@ export function Perguntas() {
             onClick={handleNext}
             className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-4 rounded-xl transition"
           >
-            {isLastQuestion
-              ? `Ver Resultados 🎉`
-              : `Próxima Pergunta →`}
+            {isLastQuestion ? `Ver Resultados 🎉` : `Próxima Pergunta →`}
           </button>
         )}
 
-        <p className="text-xs text-gray-500 text-center mt-8">
-          Developers by{" "}
-          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-            <strong>Ewersson Assis</strong>
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-            target="_blank"
-          >
-            <strong>Maria de Fátima</strong>
-          </a>
-        </p>
+        <Footer />
       </div>
     </div>
   );

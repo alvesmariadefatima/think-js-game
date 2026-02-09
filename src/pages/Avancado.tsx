@@ -2,25 +2,19 @@ import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BookOpen, ChevronRight, ArrowLeft, X } from "lucide-react";
 import { getAdvancedTopics } from "../data/advancedtopics";
-import logoTexto from "../assets/logo-texto.png";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function Avancado() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-  const topics = useMemo(
-    () => getAdvancedTopics("pt"),
-    [],
-  );
+  const topics = useMemo(() => getAdvancedTopics("pt"), []);
   const topic = topics[current];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-      <nav className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <img src={logoTexto} alt="ThinkJS" className="h-10" />
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="max-w-4xl mx-auto p-6 space-y-6">
         {/* Topo */}
@@ -88,26 +82,12 @@ export default function Avancado() {
             }
             className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold"
           >
-            {current === topics.length - 1
-              ? "Finalizar"
-              : "Próximo"}
+            {current === topics.length - 1 ? "Finalizar" : "Próximo"}
           </button>
         </div>
       </div>
 
-      <p className="text-xs text-gray-500 text-center mt-8">
-        Developers by{" "}
-        <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-          <strong>Ewersson Assis</strong>
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-          target="_blank"
-        >
-          <strong>Maria de Fátima</strong>
-        </a>
-      </p>
+      <Footer />
     </div>
   );
 }

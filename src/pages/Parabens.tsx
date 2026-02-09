@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/GameContext";
 import logoParabens from "../assets/logo-parabens.png";
+import Footer from "../components/Footer";
 
 export function Parabens() {
   const { currentSession, resetQuiz } = useGame();
@@ -44,7 +45,8 @@ export function Parabens() {
           </div>
 
           <h2 className="text-2xl font-bold mb-4 text-gray-600">
-            Parabéns! Você acertou {correctAnswers} de {totalQuestions} questões!
+            Parabéns! Você acertou {correctAnswers} de {totalQuestions}{" "}
+            questões!
           </h2>
 
           <div className="grid grid-cols-3 gap-6 mb-8">
@@ -53,9 +55,7 @@ export function Parabens() {
               <div className="text-2xl font-bold text-blue-600 mb-1">
                 {correctAnswers}/{totalQuestions}
               </div>
-              <div className="text-sm text-gray-600">
-                Respostas Corretas
-              </div>
+              <div className="text-sm text-gray-600">Respostas Corretas</div>
             </div>
 
             <div className="bg-purple-50 rounded-xl p-6">
@@ -64,12 +64,8 @@ export function Parabens() {
                 {percentage}%
               </div>
               <div className="text-sm text-gray-600">
-                <span className="hidden sm:inline">
-                  Desempenho
-                </span>
-                <span className="sm:hidden">
-                  Desempenho
-                </span>
+                <span className="hidden sm:inline">Desempenho</span>
+                <span className="sm:hidden">Desempenho</span>
               </div>
             </div>
 
@@ -78,9 +74,7 @@ export function Parabens() {
               <div className="text-2xl font-bold text-yellow-600 mb-1">
                 +{totalXpEarned}
               </div>
-              <div className="text-sm text-gray-600">
-                XP Ganho
-              </div>
+              <div className="text-sm text-gray-600">XP Ganho</div>
             </div>
           </div>
 
@@ -99,19 +93,7 @@ export function Parabens() {
             </button>
           </div>
 
-          <p className="text-xs text-gray-500 text-center mt-8">
-            Developers by{" "}
-            <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-              <strong>Ewersson Assis</strong>
-            </a>{" "}
-            and{" "}
-            <a
-              href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-              target="_blank"
-            >
-              <strong>Maria de Fátima</strong>
-            </a>
-          </p>
+          <Footer />
         </div>
       </div>
     </div>

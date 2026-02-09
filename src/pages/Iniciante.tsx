@@ -2,29 +2,20 @@ import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BookOpen, ChevronRight, ArrowLeft, X } from "lucide-react";
 import { getBeginnerTopics } from "../data/beginnertopics";
-import logoTexto from "../assets/logo-texto.png";
+// import logoTexto from "../assets/logo-texto.png";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 export default function Iniciante() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-  const topics = useMemo(
-    () => getBeginnerTopics("pt-BR"),
-    [],
-  );
+  const topics = useMemo(() => getBeginnerTopics("pt-BR"), []);
   const topic = topics[current];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
-      <nav className="w-full bg-white border-b border-gray-200">
-        <div className="bg-white border-b border-gray-200 px-6 py-4">
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <img src={logoTexto} alt="ThinkJS" className="h-50" />
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="w-full max-w-4xl mx-auto p-6 space-y-6">
         {/* Topo */}
@@ -99,26 +90,12 @@ export default function Iniciante() {
             }}
             className="px-6 py-3 rounded-xl font-semibold transition bg-yellow-400 text-black hover:bg-yellow-500"
           >
-            {current === topics.length - 1
-              ? "Finalizar"
-              : "Próximo"}
+            {current === topics.length - 1 ? "Finalizar" : "Próximo"}
           </button>
         </div>
       </div>
 
-      <p className="text-xs text-gray-500 text-center mt-8">
-        Developers by{" "}
-        <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-          <strong>Ewersson Assis</strong>
-        </a>{" "}
-        and{" "}
-        <a
-          href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-          target="_blank"
-        >
-          <strong>Maria de Fátima</strong>
-        </a>
-      </p>
+      <Footer />
     </div>
   );
 }
