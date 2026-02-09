@@ -12,14 +12,13 @@ import { useGame } from "../context/GameContext";
 import { getLessons } from "../data/questions";
 import { useState, useEffect } from "react";
 import logoTexto from "../assets/logo-texto.png";
+import Footer from "../components/Footer";
 
 export function Home() {
   const { user, logout } = useAuth();
   const { startQuiz } = useGame();
   const navigate = useNavigate();
-  const [currentLessons, setCurrentLessons] = useState(
-    getLessons("pt-BR"),
-  );
+  const [currentLessons, setCurrentLessons] = useState(getLessons("pt-BR"));
 
   useEffect(() => {
     setCurrentLessons(getLessons("pt-BR"));
@@ -126,7 +125,7 @@ export function Home() {
           </div>
         </div>
       </div>
-
+      z
       <div className="max-w-6xl mx-auto p-6">
         <div className="text-center mb-8">
           <h2 className="text-2xl text-gray-600 font-bold mb-2">
@@ -187,41 +186,23 @@ export function Home() {
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Store size={20} className="text-gray-600" />
-              <span className="font-medium text-gray-600">
-                Loja
-              </span>
+              <span className="font-medium text-gray-600">Loja</span>
             </button>
             <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition">
               <Settings size={20} className="text-gray-600" />
-              <span className="font-medium text-gray-600">
-                Configurações
-              </span>
+              <span className="font-medium text-gray-600">Configurações</span>
             </button>
             <button
               onClick={handleLogout}
               className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition"
             >
               <LogOut size={20} className="text-gray-600" />
-              <span className="font-medium text-gray-600">
-                Sair
-              </span>
+              <span className="font-medium text-gray-600">Sair</span>
             </button>
           </div>
         </div>
 
-        <p className="text-xs text-gray-500 text-center mt-8">
-          Developers by{" "}
-          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-            <strong>Ewersson Assis</strong>
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-            target="_blank"
-          >
-            <strong>Maria de Fátima</strong>
-          </a>
-        </p>
+        <Footer />
       </div>
     </div>
   );

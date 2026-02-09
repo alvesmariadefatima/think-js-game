@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { validatePasswordMatch } from "../utils/validation";
 import logo from "../assets/logo.png";
+import Footer from "../components/Footer";
 
 export function Cadastro() {
   const [name, setName] = useState("");
@@ -50,7 +51,11 @@ export function Cadastro() {
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
         <div className="flex justify-center items-center">
           <Link to="/">
-            <img src={logo} alt="ThinkJS" className="h-30 sm:h-20 md:h-24 lg:h-28" />
+            <img
+              src={logo}
+              alt="ThinkJS"
+              className="h-30 sm:h-20 md:h-24 lg:h-28"
+            />
           </Link>
         </div>
 
@@ -133,19 +138,7 @@ export function Cadastro() {
           </button>
         </div>
 
-        <p className="text-xs text-gray-500 text-center mt-8">
-          Developers by{" "}
-          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-            <strong>Ewersson Assis</strong>
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-            target="_blank"
-          >
-            <strong>Maria de Fátima</strong>
-          </a>
-        </p>
+        <Footer />
       </div>
     </div>
   );

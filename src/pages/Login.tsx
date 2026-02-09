@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import logo from "../assets/logo.png";
+import Footer from "../components/Footer";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -37,17 +38,11 @@ export function Login() {
       <div className="bg-white rounded-3xl shadow-lg p-8 w-full max-w-sm">
         <div className="flex justify-center items-center mb-8">
           <Link to="/">
-            <img
-              src={logo}
-              alt="ThinkJS Logo"
-              className="w-100 h-100"
-            />
+            <img src={logo} alt="ThinkJS Logo" className="w-100 h-100" />
           </Link>
         </div>
 
-        <h2 className="text-xl font-semibold mb-6  text-gray-600">
-          Entrar
-        </h2>
+        <h2 className="text-xl font-semibold mb-6  text-gray-600">Entrar</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -101,19 +96,7 @@ export function Login() {
           Esqueceu a senha?
         </button>
 
-        <p className="text-xs text-gray-500 text-center mt-8">
-          Developers by{" "}
-          <a href="https://www.linkedin.com/in/oewersson/" target="_blank">
-            <strong>Ewersson Assis</strong>
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.linkedin.com/in/maria-de-fatima-alves/"
-            target="_blank"
-          >
-            <strong>Maria de Fátima</strong>
-          </a>
-        </p>
+        <Footer />
       </div>
     </div>
   );
